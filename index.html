@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BYTEWEBNEST — Карта развития разработчика</title>
+    <meta name="description"
+        content="BYTEWEBNEST — современная карта развития разработчика с уровнями, модулями, темами и системой разблокировки доступа." />
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords"
+        content="web development roadmap, frontend roadmap, javascript course, html css javascript learning, programming course, bytewebnest" />
+    <meta name="author" content="BYTEWEBNEST" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="BYTEWEBNEST — Карта развития разработчика" />
+    <meta property="og:description"
+        content="Интерактивная карта обучения веб-разработке. Изучай темы по модулям, закрепляй знания практикой и развивайся системно — от Starter до Senior." />
+    <meta property="og:image" content="images/banner.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="BYTEWEBNEST" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="BYTEWEBNEST — Карта развития разработчика" />
+    <meta name="twitter:description"
+        content="Структурированная система обучения веб-разработке: модули, темы, практика и удобная карта роста." />
+    <meta name="twitter:image" content="images/banner.png" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Course",
+ "name": "JavaScript Roadmap",
+ "description": "Interactive roadmap for learning JavaScript and front-end development step by step.",
+ "provider": {
+   "@type": "Organization",
+   "name": "ByteWebNest",
+   "sameAs": "https://github.com/admin-bytewebnest"
+ }
+}
+</script>
+</head>
+
+<body>
+    <div class="site-shell">
+        <div class="bg-blur bg-blur--top"></div>
+        <div class="bg-blur bg-blur--bottom"></div>
+
+        <header class="header">
+            <div class="container header__container">
+                <a href="#" class="logo" aria-label="BYTEWEBNEST">
+                    <span class="logo__mark"></span>
+                    <span class="logo__text">BYTEWEBNEST</span>
+                </a>
+
+                <nav class="header__nav">
+                    <a href="#overview" class="header__link" id="moduleViewLink">Обзор</a>
+                    <a href="#map" class="header__link" id="mapViewLink">Карта</a>
+                    <a href="#topics" class="header__link" id="topicsViewLink">Темы</a>
+                    <a href="#practice" class="header__link" id="practiceViewLink">Практика</a>
+                </nav>
+
+                <button class="header__menu-btn" id="sidebarOpenBtn" type="button" aria-label="Открыть программу">
+                    Программа
+                </button>
+            </div>
+        </header>
+
+        <main class="layout">
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar__overlay" id="sidebarOverlay"></div>
+
+                <div class="sidebar__panel">
+                    <div class="sidebar__top">
+                        <div class="sidebar__brand">
+                            <span class="sidebar__brand-dot"></span>
+                            <div>
+                                <span class="sidebar__brand-text">BYTEWEBNEST</span>
+                                <span class="sidebar__brand-subtext">Программа обучения</span>
+                            </div>
+                        </div>
+
+                        <button class="sidebar__close" id="sidebarCloseBtn" type="button" aria-label="Закрыть меню">
+                            ×
+                        </button>
+                    </div>
+
+                    <div class="sidebar__inner">
+                        <div class="sidebar-block sidebar-block--tracks">
+                            <p class="sidebar-block__label">Уровни</p>
+                            <div class="track-nav" id="trackNav"></div>
+                        </div>
+
+                        <div class="sidebar-block sidebar-block--modules">
+                            <p class="sidebar-block__label">Модули уровня</p>
+                            <div class="module-nav" id="moduleNav"></div>
+                            <div class="sidebar-empty" id="moduleEmptyState"></div>
+                        </div>
+
+                        <div class="sidebar-block sidebar-block--topics">
+                            <div class="sidebar-block__head">
+                                <p class="sidebar-block__label">Содержание модуля</p>
+                                <button class="sidebar-block__toggle" id="topicsToggle" type="button">
+                                    Свернуть
+                                </button>
+                            </div>
+
+                            <div class="topic-nav-wrap" id="topicNavWrap">
+                                <div class="topic-nav" id="topicNav"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="content-area" id="app">
+                <section class="landing section" id="landing">
+                    <div class="container">
+                        <div class="landing__hero glass-card fade-up">
+                            <div class="landing__content">
+                                <p class="section-label">BYTEWEBNEST</p>
+                                <h1 class="landing__title">
+                                    Карта развития
+                                    <span>веб-разработчика</span>
+                                </h1>
+
+                                <p class="landing__text">
+                                    Структурированная система обучения, которая помогает изучать веб-разработку
+                                    поэтапно: от фундаментальных тем до уверенной практики и роста по уровням.
+                                </p>
+
+                                <div class="landing__actions">
+                                    <a href="#overview" class="btn btn--primary">Начать обучение</a>
+                                    <a href="#map" class="btn btn--secondary" id="landingMapLink">Открыть карту</a>
+                                </div>
+
+                                <ul class="landing__stats">
+                                    <li>
+                                        <strong>10+</strong>
+                                        <span>готовых модулей</span>
+                                    </li>
+                                    <li>
+                                        <strong>4</strong>
+                                        <span>уровня развития</span>
+                                    </li>
+                                    <li>
+                                        <strong>10$</strong>
+                                        <span>полный доступ</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="landing__visual">
+                                <div class="landing__visual-card">
+                                    <img src="images/banner.png" alt="BYTEWEBNEST roadmap preview"
+                                        class="landing__image" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="benefits section section--compact">
+                    <div class="container">
+                        <div class="section-head fade-up">
+                            <p class="section-label">Что внутри</p>
+                            <h2 class="section-title">Не просто статьи, а система обучения</h2>
+                            <p class="section-subtitle">
+                                BYTEWEBNEST помогает изучать разработку без хаоса: последовательно, с практикой и
+                                понятной логикой роста.
+                            </p>
+                        </div>
+
+                        <div class="benefits__grid">
+                            <article class="benefit-card fade-up">
+                                <h3 class="benefit-card__title">Пошаговая структура</h3>
+                                <p class="benefit-card__text">
+                                    Темы расположены по уровням сложности, чтобы ты понимал, что изучать сейчас и что
+                                    будет следующим шагом.
+                                </p>
+                            </article>
+
+                            <article class="benefit-card fade-up">
+                                <h3 class="benefit-card__title">Практика после модулей</h3>
+                                <p class="benefit-card__text">
+                                    В каждом блоке есть закрепление материала, чтобы знания переходили из теории в
+                                    реальные навыки.
+                                </p>
+                            </article>
+
+                            <article class="benefit-card fade-up">
+                                <h3 class="benefit-card__title">Карта развития</h3>
+                                <p class="benefit-card__text">
+                                    От Starter до Senior — ты видишь не только текущий модуль, но и всю дорогу роста
+                                    разработчика.
+                                </p>
+                            </article>
+
+                            <article class="benefit-card fade-up">
+                                <h3 class="benefit-card__title">Будущие обновления</h3>
+                                <p class="benefit-card__text">
+                                    После открытия доступа ты получаешь не только текущий контент, но и новые модули,
+                                    которые будут добавляться дальше.
+                                </p>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="levels section section--compact">
+                    <div class="container">
+                        <div class="section-head fade-up">
+                            <p class="section-label">Уровни</p>
+                            <h2 class="section-title">Обучение разбито на 4 этапа развития</h2>
+                        </div>
+
+                        <div class="levels__grid">
+                            <article class="level-card fade-up">
+                                <span class="level-card__badge">Starter</span>
+                                <h3 class="level-card__title">Старт в разработке</h3>
+                                <p class="level-card__text">
+                                    Основы JavaScript, логика, циклы, функции, массивы, объекты и первые шаги в DOM.
+                                </p>
+                            </article>
+
+                            <article class="level-card fade-up">
+                                <span class="level-card__badge">Junior</span>
+                                <h3 class="level-card__title">Уверенная база</h3>
+                                <p class="level-card__text">
+                                    Прикладная логика, интерфейсы, данные, API и переход от учебных примеров к реальным
+                                    задачам.
+                                </p>
+                            </article>
+
+                            <article class="level-card fade-up">
+                                <span class="level-card__badge">Middle</span>
+                                <h3 class="level-card__title">Прикладная разработка</h3>
+                                <p class="level-card__text">
+                                    Архитектура, асинхронность, структура приложений и зрелый подход к работе с
+                                    проектами.
+                                </p>
+                            </article>
+
+                            <article class="level-card fade-up">
+                                <span class="level-card__badge">Senior</span>
+                                <h3 class="level-card__title">Системное мышление</h3>
+                                <p class="level-card__text">
+                                    Понимание платформы, оптимизация, проектирование и более глубокий взгляд на
+                                    разработку.
+                                </p>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="premium-cta section">
+                    <div class="container">
+                        <div class="premium-cta__box final-box fade-up">
+                            <div class="premium-cta__content">
+                                <p class="section-label">Полный доступ</p>
+                                <h2 class="section-title">Открой весь курс и будущие обновления</h2>
+                                <p class="premium-cta__text">
+                                    Полный доступ открывает все модули, скрытые темы, практику, итоговые результаты и
+                                    будущие разделы курса.
+                                </p>
+
+                                <ul class="premium-cta__list">
+                                    <li>весь текущий контент курса</li>
+                                    <li>открытие практики и итогов</li>
+                                    <li>доступ к следующим модулям</li>
+                                    <li>обновления и новые разделы</li>
+                                </ul>
+                            </div>
+
+                            <div class="premium-cta__side">
+                                <div class="premium-cta__price">10$</div>
+                                <p class="premium-cta__note">Для получения доступа напиши в Telegram</p>
+                                <a href="https://t.me/bytewebnest" target="_blank" rel="noopener noreferrer"
+                                    class="btn btn--primary">
+                                    @bytewebnest
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="map-page section" id="mapPage" hidden>
+                    <div class="container">
+                        <div class="section-head fade-up">
+                            <p class="section-label">Карта обучения</p>
+                            <h2 class="section-title">Дерево развития курса</h2>
+                            <p class="section-subtitle">
+                                Здесь будет отображаться удобная визуальная карта веток обучения. Пока раздел находится
+                                в разработке.
+                            </p>
+                        </div>
+
+                        <div class="map-page__content final-box fade-up" id="mapPageContent">
+                            <div class="map-page__loading">
+                                Карта обучения сейчас в разработке. Скоро здесь появится визуальная структура всех
+                                уровней и модулей.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div id="modulePage">
+                    <section class="hero section" id="overview">
+                        <div class="container hero__container">
+                            <div class="hero__content">
+                                <div class="eyebrow" id="trackBadge">BYTEWEBNEST ROADMAP</div>
+
+                                <h1 class="hero__title" id="moduleTitle">Загрузка модуля...</h1>
+
+                                <p class="hero__goal" id="moduleGoal">Подготовка контента...</p>
+
+                                <p class="hero__description" id="moduleDescription">
+                                    Здесь появится описание модуля.
+                                </p>
+
+                                <div class="hero__actions">
+                                    <a href="#topics" class="btn btn--primary">Изучить темы</a>
+                                    <button class="btn btn--secondary" id="unlockButton" type="button">
+                                        Разблокировать доступ
+                                    </button>
+                                </div>
+
+                                <ul class="hero__stats" id="heroStats"></ul>
+                            </div>
+
+                            <div class="hero__visual">
+                                <div class="hero-card">
+                                    <div class="hero-card__top">
+                                        <span class="hero-card__badge" id="heroBadge">Модуль</span>
+                                        <span class="hero-card__dot"></span>
+                                    </div>
+
+                                    <div class="hero-card__image-wrap">
+                                        <img id="moduleImage" class="hero-card__image" src="images/module-1.png"
+                                            alt="Изображение модуля" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="section section--compact">
+                        <div class="container">
+                            <div class="panel panel--intro">
+                                <div class="panel__left">
+                                    <p class="section-label">О модуле</p>
+                                    <h2 class="section-title">Что ты должен понять после прохождения блока</h2>
+                                </div>
+
+                                <div class="panel__right">
+                                    <p class="panel__text" id="moduleSummary">
+                                        Здесь будет отображаться ключевой смысл модуля.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="progress">
+                        <div class="container">
+
+                            <div class="progress-card">
+
+                                <!-- course progress -->
+
+                                <div class="progress-item">
+
+                                    <div class="progress-head">
+                                        <span>Course progress</span>
+                                        <span id="courseProgressPercent">0%</span>
+                                    </div>
+
+                                    <div class="progress-bar">
+                                        <div id="courseProgressBar" class="progress-bar__fill"></div>
+                                    </div>
+
+                                </div>
+
+                                <!-- module progress -->
+
+                                <div class="progress-item">
+
+                                    <div class="progress-head">
+                                        <span>Module progress</span>
+                                        <span id="moduleProgressPercent">0%</span>
+                                    </div>
+
+                                    <div class="progress-bar">
+                                        <div id="moduleProgressBar" class="progress-bar__fill"></div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </section>
+                    <section class="section" id="topics">
+                        <div class="container">
+                            <div class="section-head">
+                                <p class="section-label">Основная часть</p>
+                                <h2 class="section-title">Темы модуля</h2>
+                                <p class="section-subtitle" id="sectionSubtitle">
+                                    Темы и содержание подгружаются автоматически из JSON.
+                                </p>
+                            </div>
+
+                            <div class="topics" id="topicsContainer"></div>
+                        </div>
+                    </section>
+
+                    <section class="section" id="practice">
+                        <div class="container">
+                            <div class="practice-grid">
+                                <article class="glass-card lockable-card" id="practiceCard">
+                                    <div class="lockable-card__content">
+                                        <p class="section-label">Практика</p>
+                                        <h2 class="section-title section-title--sm">Практика для закрепления</h2>
+                                        <ol class="steps" id="practiceList"></ol>
+                                    </div>
+
+                                    <div class="lockable-card__overlay">
+                                        <button class="lockable-card__overlay-btn" type="button">
+                                            Открыть практику
+                                        </button>
+                                    </div>
+                                </article>
+
+                                <article class="glass-card lockable-card" id="thoughtCard">
+                                    <div class="lockable-card__content">
+                                        <p class="section-label">Итог</p>
+                                        <h2 class="section-title section-title--sm">Главная мысль блока</h2>
+                                        <p class="final-thought" id="finalThought"></p>
+                                    </div>
+
+                                    <div class="lockable-card__overlay">
+                                        <button class="lockable-card__overlay-btn" type="button">
+                                            Открыть итог
+                                        </button>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="section section--compact">
+                        <div class="container">
+                            <article class="final-box lockable-card" id="outcomesCard">
+                                <div class="lockable-card__content">
+                                    <div class="final-box__content">
+                                        <p class="section-label">Финальная цель</p>
+                                        <h2 class="section-title section-title--sm">После этого модуля ты должен
+                                            уверенно понимать</h2>
+                                        <ul class="check-list" id="outcomesList"></ul>
+                                    </div>
+                                </div>
+
+                                <div class="lockable-card__overlay">
+                                    <button class="lockable-card__overlay-btn" type="button">
+                                        Открыть итоговые результаты
+                                    </button>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal" id="unlockModal" aria-hidden="true">
+        <div class="modal__overlay" data-close-modal></div>
+
+        <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="unlockModalTitle">
+            <button class="modal__close" id="modalCloseBtn" type="button" aria-label="Закрыть окно">
+                ×
+            </button>
+
+            <div class="modal__brand">
+                <div class="modal__brand-logo">
+                    <img src="images/logo.png" alt="BYTEWEBNEST" class="modal__brand-image" />
+                </div>
+            </div>
+
+            <p class="modal__eyebrow">Полный доступ к обучению</p>
+            <h2 class="modal__title" id="unlockModalTitle">Разблокировать все модули</h2>
+
+            <p class="modal__text">
+                Мы закрыли часть контента, чтобы поддержать авторов, которые собирают материал,
+                выстраивают его в правильной хронологии и делают изучение удобным — от темы к теме,
+                без путаницы и хаоса.
+            </p>
+
+            <div class="modal__promo">
+                <p class="modal__promo-text">
+                    В каждом модуле информация распределена последовательно: сначала основа, затем
+                    важные акценты, а в конце — практика для закрепления. Полный доступ открывает не
+                    только все текущие материалы, но и будущие обновления.
+                </p>
+
+                <div class="modal__price-box">
+                    <span class="modal__price-label">Стоимость полного доступа</span>
+                    <strong class="modal__price-value">10$</strong>
+                </div>
+
+                <ul class="modal__benefits">
+                    <li>безграничный доступ ко всем модулям</li>
+                    <li>открытие всей скрытой теории, практики и итогов</li>
+                    <li>обновления на следующие модули</li>
+                    <li>доступ к дополнительным разделам, которые скоро станут доступны</li>
+                </ul>
+
+                <p class="modal__contact">
+                    Telegram для связи:
+                    <a href="https://t.me/bytewebnest" target="_blank" rel="noopener noreferrer">@bytewebnest</a>
+                </p>
+            </div>
+
+            <form class="modal__form" id="unlockForm">
+                <label class="modal__label" for="unlockCodeInput">Код доступа</label>
+                <input class="modal__input" id="unlockCodeInput" type="password" inputmode="text" autocomplete="off"
+                    placeholder="Введите код" />
+                <p class="modal__message" id="unlockMessage"></p>
+
+                <button class="btn btn--primary modal__submit" type="submit">
+                    Разблокировать
+                </button>
+            </form>
+        </div>
+    </div>
+    <footer class="footer">
+
+        <div class="footer__glow"></div>
+
+        <div class="container footer__container">
+
+            <div class="footer__brand">
+                <span class="footer__logo-dot"></span>
+                <span class="footer__logo-text">BYTEWEBNEST</span>
+            </div>
+
+            <div class="footer__info">
+
+                <span class="footer__copy">
+                    © 2026 ByteWebNest
+                </span>
+
+                <span class="footer__divider"></span>
+
+                <span class="footer__price">
+                    Full course access — <strong>10$</strong>
+                </span>
+
+                <span class="footer__divider"></span>
+
+                <a href="https://t.me/bytewebnest" class="footer__telegram">
+                    Telegram: @bytewebnest
+                </a>
+
+            </div>
+
+        </div>
+        <div id="completionScreen" class="completion">
+
+            <div class="completion-card">
+
+                <h2>🎉 Course completed</h2>
+
+                <p>
+                    You finished the ByteWebNest JavaScript course.
+                    You now understand the core of modern JavaScript.
+                </p>
+
+                <button onclick="location.reload()" class="btn btn--primary">
+                    Restart learning
+                </button>
+
+            </div>
+
+        </div>
+    </footer>
+    <script src="js/app.js" defer></script>
+</body>
+
+</html>

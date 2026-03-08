@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://admin-bytewebnest.github.io/bytewebnest-roadmap/sitemap.xml

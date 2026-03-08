@@ -1,0 +1,40 @@
+{
+  "tracks": {
+
+    "starter": {
+      "showComingSoon": false,
+      "title": "Starter доступен",
+      "availableDate": "",
+      "description": "Базовые модули уже опубликованы и доступны для изучения."
+    },
+
+    "junior": {
+      "showComingSoon": true,
+      "title": "Junior в разработке",
+      "availableDate": "Скоро",
+      "description": "Этот уровень сейчас разрабатывается. Здесь появятся новые модули по практическому JavaScript."
+    },
+
+    "middle": {
+      "showComingSoon": true,
+      "title": "Middle в разработке",
+      "availableDate": "Скоро",
+      "description": "Здесь будут более сложные темы разработки и архитектуры приложений."
+    },
+
+    "senior": {
+      "showComingSoon": true,
+      "title": "Senior в разработке",
+      "availableDate": "Скоро",
+      "description": "Продвинутый уровень разработки и глубокое понимание платформы."
+    },
+
+    "bonuses": {
+      "showComingSoon": true,
+      "title": "Бонусные модули",
+      "availableDate": "Скоро",
+      "description": "Дополнительные бонусные материалы и практические модули."
+    }
+
+  }
+}
