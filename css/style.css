@@ -1793,6 +1793,7 @@ input {
   display: flex;
   align-items: center;
   gap: 12px;
+  padding-left: 100px;
 }
 
 .footer__logo-dot {
@@ -1877,6 +1878,9 @@ input {
   .footer__glow {
     width: 600px;
     height: 180px;
+  }
+  .footer__brand {
+    padding-left: 0px;
   }
 
 }
