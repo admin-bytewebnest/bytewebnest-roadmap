@@ -1,0 +1,138 @@
+
+/* BYTEWEBNEST sidebar compact fix */
+
+:root {
+  /* Sidebar was feeling too bulky and also stealing too much width from content */
+  --sidebar-width: 390px;
+}
+
+/* Make the whole sidebar use height more efficiently */
+.sidebar__panel {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sidebar__top {
+  padding: 12px 16px;
+}
+
+.sidebar__inner {
+  grid-template-rows: auto minmax(0, 1fr) minmax(120px, 0.72fr);
+  gap: 12px;
+  padding: 14px 10px 14px 14px;
+  overflow: visible;
+}
+
+/* Compact section headings */
+.sidebar-block__label {
+  margin: 0 0 8px;
+  font-size: 11px;
+}
+
+.sidebar-block__head {
+  margin-bottom: 10px;
+}
+
+.sidebar-block--topics {
+  padding-top: 10px;
+}
+
+/* Tighter layout for levels */
+.track-nav {
+  gap: 8px;
+}
+
+.track-link {
+  min-height: 74px !important;
+  padding: 12px 12px 13px !important;
+  border-radius: 18px;
+}
+
+.track-link__title {
+  font-size: 13px !important;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.track-link__text {
+  font-size: 11px !important;
+  line-height: 1.3;
+}
+
+/* Tighter modules */
+.module-nav,
+.topic-nav-wrap {
+  padding-right: 4px;
+}
+
+.module-nav {
+  gap: 8px;
+}
+
+.module-link {
+  min-height: 78px !important;
+  padding: 12px 40px 12px 12px !important;
+  border-radius: 18px;
+}
+
+.module-link__small {
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.module-link__title {
+  font-size: 13px !important;
+  line-height: 1.35;
+}
+
+/* Tighter topics */
+.topic-nav {
+  gap: 8px;
+}
+
+.topic-link {
+  padding: 11px 12px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+/* Smaller controls in sidebar */
+.sidebar-block__toggle {
+  min-height: 36px;
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+.sidebar__close {
+  width: 42px;
+  height: 42px;
+}
+
+/* Keep desktop content area comfortable after sidebar width tuning */
+.content-area {
+  margin-left: var(--sidebar-width);
+}
+
+@media (max-width: 980px) {
+  :root {
+    --sidebar-width: 390px;
+  }
+
+  .sidebar__panel {
+    width: min(100%, 430px);
+    overflow-y: auto;
+  }
+
+  .sidebar__inner {
+    grid-template-rows: auto minmax(0, 1fr) minmax(140px, 0.8fr);
+    padding: 16px 14px 16px 16px;
+  }
+
+  .track-link {
+    min-height: 82px !important;
+  }
+
+  .module-link {
+    min-height: 84px !important;
+  }
+}
