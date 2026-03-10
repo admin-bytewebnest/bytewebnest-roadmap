@@ -1,0 +1,34 @@
+{
+  "tracks": {
+    "starter": {
+      "showComingSoon": false,
+      "title": "Starter Available",
+      "availableDate": "",
+      "description": "The basic modules are already published and available for learning."
+    },
+    "junior": {
+      "showComingSoon": true,
+      "title": "Junior in Development",
+      "availableDate": "Coming soon",
+      "description": "This level is currently under development. New modules on practical JavaScript will appear here."
+    },
+    "middle": {
+      "showComingSoon": true,
+      "title": "Middle in Development",
+      "availableDate": "Coming soon",
+      "description": "More advanced development topics and application architecture will appear here."
+    },
+    "senior": {
+      "showComingSoon": true,
+      "title": "Senior in Development",
+      "availableDate": "Coming soon",
+      "description": "Advanced development level and deeper understanding of the platform."
+    },
+    "bonuses": {
+      "showComingSoon": true,
+      "title": "Bonus Modules",
+      "availableDate": "Coming soon",
+      "description": "Additional bonus materials and practical modules."
+    }
+  }
+}

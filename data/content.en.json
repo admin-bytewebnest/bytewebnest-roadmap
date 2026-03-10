@@ -1,0 +1,1851 @@
+{
+  "_note_1": "tracks define levels and module grouping.",
+  "_note_2": "modules store the module content itself.",
+  "_note_3": "Starter is currently filled with modules 1-10. The remaining levels are already prepared for future content.",
+  "_note_4": "freeModuleId is the free module, freeTopicsCount is how many topics are visible without the code.",
+  "site": {
+    "name": "BYTEWEBNEST",
+    "title": "Developer Growth Roadmap"
+  },
+  "defaultTrackId": "starter",
+  "defaultModuleId": "module-1",
+  "access": {
+    "freeModuleId": "module-1",
+    "freeTopicsCount": 3,
+    "unlockCode": "BWN#9x@2026!"
+  },
+  "tracks": [
+    {
+      "id": "starter",
+      "title": "Starter",
+      "subtitle": "Starting out in development",
+      "description": "The basics of JavaScript and your first key skills. This is where the foundation is built, and without it you cannot move forward.",
+      "modules": [
+        "module-1",
+        "module-2",
+        "module-3",
+        "module-4",
+        "module-5",
+        "module-6",
+        "module-7",
+        "module-8",
+        "module-9",
+        "module-10"
+      ]
+    },
+    {
+      "id": "junior",
+      "title": "Junior",
+      "subtitle": "Confident foundation",
+      "description": "The next stage of growth: applied logic, real project structure, working with data, APIs, and interfaces.",
+      "modules": []
+    },
+    {
+      "id": "middle",
+      "title": "Middle",
+      "subtitle": "Applied development",
+      "description": "Architecture, scaling, asynchrony, application structure, and a mature approach to development.",
+      "modules": []
+    },
+    {
+      "id": "senior",
+      "title": "Senior",
+      "subtitle": "Systems thinking",
+      "description": "Deep platform understanding, optimization, patterns, design, and a systems-level approach to development.",
+      "modules": []
+    },
+    {
+      "id": "bonuses",
+      "title": "Bonuses",
+      "subtitle": "Additional materials",
+      "description": "Bonus modules, extra breakdowns, useful practical blocks, and extended materials will appear here.",
+      "modules": []
+    }
+  ],
+  "modules": [
+    {
+      "id": "module-1",
+      "hero": {
+        "badge": "Module 1",
+        "module": "Module 1 — JavaScript Fundamentals",
+        "goal": "Understand how JS is connected, how to output data, and what data means in JavaScript.",
+        "description": "This is the foundation you cannot move forward without. The first step in JavaScript is understanding how the language gets onto the page, how to see the result of your work, and how data is structured.",
+        "image": {
+          "src": "images/module-1.png",
+          "alt": "JavaScript Fundamentals"
+        }
+      },
+      "summary": "After completing this module, you should see JavaScript as a language that works with data, variables, types, and the logic of connecting to HTML.",
+      "stats": [
+        {
+          "value": "5",
+          "label": "Key topics"
+        },
+        {
+          "value": "10+",
+          "label": "Core concepts"
+        },
+        {
+          "value": "1",
+          "label": "Practical mini script"
+        }
+      ],
+      "topics": [
+        {
+          "title": "Connecting JavaScript to HTML",
+          "intro": "Understand how JavaScript gets onto the page and exactly when it starts executing.",
+          "study": [
+            "<script> tag",
+            "head vs body",
+            "defer",
+            "async",
+            "connecting an external file",
+            "type=\"module\""
+          ],
+          "deepDive": [
+            "when JS executes",
+            "why the DOM is not ready yet",
+            "difference between script, defer, and async"
+          ],
+          "example": "<script src=\"script.js\"></script>",
+          "important": "JS can execute after the HTML loads or in parallel, and this affects access to the DOM."
+        },
+        {
+          "title": "Debugging and data output",
+          "intro": "Without the console and DevTools, learning JavaScript turns into guesswork.",
+          "study": [
+            "console.log()",
+            "console.warn()",
+            "console.error()",
+            "console.table()"
+          ],
+          "deepDive": [
+            "how to debug code",
+            "how to inspect objects and arrays",
+            "how to use DevTools"
+          ],
+          "example": "console.log(\"Hello, BYTEWEBNEST\")",
+          "important": "This is the foundation of debugging and a habit you will struggle without later."
+        },
+        {
+          "title": "Variables",
+          "intro": "Variables are used to store data and work with it inside the code.",
+          "study": [
+            "let",
+            "declaring a variable",
+            "changing a value",
+            "block scope",
+            "const"
+          ],
+          "deepDive": [
+            "difference between let, const, and var",
+            "what scope is",
+            "why const does not make an object immutable"
+          ],
+          "example": "let age = 27\nconst name = \"Bogdan\"\nconst user = {}\nuser.name = \"Alex\"",
+          "important": "const prevents reassigning the reference, but it does not prevent changing the contents of an object."
+        },
+        {
+          "title": "Data types",
+          "intro": "This is the foundation of all JavaScript.",
+          "study": [
+            "number",
+            "string",
+            "boolean",
+            "null",
+            "undefined"
+          ],
+          "deepDive": [
+            "NaN",
+            "Infinity",
+            "template strings",
+            "truthy / falsy",
+            "null vs undefined"
+          ],
+          "example": "let price = 10.5\nconst name = \"Bogdan\"\nconst isOnline = true\nlet user = null\nlet age",
+          "important": "The difference between null and undefined is a common question, and you need to understand it confidently."
+        },
+        {
+          "title": "Checking a data type",
+          "intro": "You need to be able to quickly understand what type you are looking at.",
+          "study": [
+            "typeof 5",
+            "typeof \"hello\"",
+            "typeof true"
+          ],
+          "deepDive": [
+            "the historical quirk of typeof null",
+            "why typeof null returns object"
+          ],
+          "example": "typeof 5\ntypeof \"hello\"\ntypeof true\ntypeof null",
+          "important": "typeof null returns object — this is a historical JavaScript bug."
+        }
+      ],
+      "practice": {
+        "tasks": [
+          "declare 5 variables of different types",
+          "output them to the console",
+          "output their type via typeof"
+        ],
+        "finalThought": "JavaScript is a language for working with data. The first thing to understand is: data → variables → data types."
+      },
+      "outcomes": [
+        "how JS is connected",
+        "how to output data",
+        "what variables are",
+        "what data types exist",
+        "how to determine a type"
+      ]
+    },
+    {
+      "id": "module-2",
+      "hero": {
+        "badge": "Module 2",
+        "module": "Module 2 — JavaScript Operators",
+        "goal": "Understand how JavaScript compares and evaluates values.",
+        "description": "This module lays the foundation of logic: calculations, comparisons, strict and loose checks, logical operators, and the ternary operator.",
+        "image": {
+          "src": "images/module-en-2.png",
+          "alt": "JavaScript Operators"
+        }
+      },
+      "summary": "After this module, you should understand how JavaScript evaluates expressions and how to use operators to make decisions in code.",
+      "stats": [
+        {
+          "value": "10",
+          "label": "Key topics"
+        },
+        {
+          "value": "5",
+          "label": "Operator groups"
+        },
+        {
+          "value": "5",
+          "label": "Practice tasks"
+        }
+      ],
+      "topics": [
+        {
+          "title": "Arithmetic operators",
+          "intro": "Addition, subtraction, multiplication, division, and the remainder operator.",
+          "study": [
+            "+",
+            "-",
+            "*",
+            "/",
+            "%"
+          ],
+          "deepDive": [
+            "remainder after division",
+            "fractional results",
+            "checking parity with %"
+          ],
+          "example": "let a = 10\nlet b = 3\nconsole.log(a + b)\nconsole.log(a % b)",
+          "important": "% is especially important for parity checks, loops, and distributing elements."
+        },
+        {
+          "title": "Comparison operators",
+          "intro": "They compare values and return true or false.",
+          "study": [
+            ">",
+            "<",
+            ">=",
+            "<="
+          ],
+          "deepDive": [
+            "comparing numbers",
+            "comparing strings by Unicode"
+          ],
+          "example": "5 > 3\n\"b\" > \"a\"",
+          "important": "Strings are compared by Unicode."
+        },
+        {
+          "title": "Loose comparison",
+          "intro": "Comparison with type coercion.",
+          "study": [
+            "==",
+            "!="
+          ],
+          "deepDive": [
+            "implicit type coercion",
+            "why false == 0 returns true"
+          ],
+          "example": "5 == \"5\"\nfalse == 0",
+          "important": "Loose comparison often leads to bugs."
+        },
+        {
+          "title": "Strict comparison",
+          "intro": "Checks both the value and the type.",
+          "study": [
+            "===",
+            "!=="
+          ],
+          "deepDive": [
+            "difference between == and ===",
+            "why it is better to use strict comparison"
+          ],
+          "example": "5 === \"5\"\n5 !== \"5\"",
+          "important": "A good habit is to use === and !== almost always."
+        },
+        {
+          "title": "Assignment operators",
+          "intro": "They change a variable value and shorten the syntax.",
+          "study": [
+            "=",
+            "+=",
+            "-=",
+            "*=",
+            "/=",
+            "%="
+          ],
+          "deepDive": [
+            "basic assignment",
+            "short forms"
+          ],
+          "example": "let a = 10\na += 5",
+          "important": "Short assignment operators make code more compact."
+        },
+        {
+          "title": "Increment and decrement",
+          "intro": "They are often used in loops and when changing values step by step.",
+          "study": [
+            "++",
+            "--"
+          ],
+          "deepDive": [
+            "postfix",
+            "prefix",
+            "difference between i++ and ++i"
+          ],
+          "example": "let i = 0\ni++\n++i",
+          "important": "You need to understand the difference between postfix and prefix."
+        },
+        {
+          "title": "Logical operators",
+          "intro": "They let you combine checks.",
+          "study": [
+            "&&",
+            "||",
+            "!"
+          ],
+          "deepDive": [
+            "AND",
+            "OR",
+            "NOT"
+          ],
+          "example": "age > 18 && age < 30\n!true",
+          "important": "This is the foundation of all conditional logic."
+        },
+        {
+          "title": "Nullish coalescing operator",
+          "intro": "Provides a default value only if the left side is null or undefined.",
+          "study": [
+            "??"
+          ],
+          "deepDive": [
+            "difference between ?? and ||",
+            "nullish vs falsy"
+          ],
+          "example": "let name = userName ?? \"Guest\"",
+          "important": "?? preserves 0, an empty string, and false."
+        },
+        {
+          "title": "Optional chaining",
+          "intro": "Safe access to nested properties.",
+          "study": [
+            "?."
+          ],
+          "deepDive": [
+            "accessing nested properties",
+            "working with objects and APIs"
+          ],
+          "example": "user?.address?.city",
+          "important": "If the property does not exist, no error occurs."
+        },
+        {
+          "title": "Ternary operator",
+          "intro": "A short form of if.",
+          "study": [
+            "condition ? value1 : value2"
+          ],
+          "deepDive": [
+            "when to use it",
+            "when not to use it for complex logic"
+          ],
+          "example": "let result = age >= 18 ? \"adult\" : \"child\"",
+          "important": "The ternary operator is good for short and readable conditions."
+        }
+      ],
+      "practice": {
+        "tasks": [
+          "check an even number",
+          "check age",
+          "output the larger number",
+          "use ??",
+          "use the ternary operator"
+        ],
+        "finalThought": "JavaScript is a language of conditions and logic. Operators are decision-making tools."
+      },
+      "outcomes": [
+        "understand arithmetic operators",
+        "distinguish == and ===",
+        "use logical operators",
+        "understand truthy and falsy",
+        "use the ternary operator and ??"
+      ]
+    },
+    {
+      "id": "module-3",
+      "hero": {
+        "badge": "Module 3",
+        "module": "Module 3 — Logic and Flow Control",
+        "goal": "Learn to build conditions and control program behavior.",
+        "description": "This module teaches you to make decisions in code: if, else, else if, switch, truthy/falsy, and short conditions.",
+        "image": {
+          "src": "images/module-en-3.png",
+          "alt": "Logic and flow control"
+        }
+      },
+      "summary": "After completing this module, you should confidently build conditions and write cleaner, clearer logic.",
+      "stats": [
+        {
+          "value": "10",
+          "label": "Key topics"
+        },
+        {
+          "value": "3",
+          "label": "Main tools"
+        },
+        {
+          "value": "5",
+          "label": "Practice tasks"
+        }
+      ],
+      "topics": [
+        {
+          "title": "Logical operators",
+          "intro": "They allow you to combine conditions together.",
+          "study": [
+            "&&",
+            "||",
+            "!"
+          ],
+          "deepDive": [
+            "&& returns a value",
+            "|| returns the first truthy value",
+            "!! converts to boolean"
+          ],
+          "example": "true && \"hello\"\nlet name = userName || \"Guest\"",
+          "important": "Logical operators often return actual values, not only true or false."
+        },
+        {
+          "title": "if",
+          "intro": "The basic conditional construct.",
+          "study": [
+            "if"
+          ],
+          "deepDive": [
+            "the condition should return boolean",
+            "truthy / falsy"
+          ],
+          "example": "if (age >= 18) {\n  console.log(\"access granted\")\n}",
+          "important": "if is the foundation of any branching logic."
+        },
+        {
+          "title": "else",
+          "intro": "Executes if the if condition turns out to be false.",
+          "study": [
+            "else"
+          ],
+          "deepDive": [
+            "alternative branch"
+          ],
+          "example": "if (age >= 18) {\n console.log(\"enter\")\n} else {\n console.log(\"access denied\")\n}",
+          "important": "else describes alternative behavior."
+        },
+        {
+          "title": "else if",
+          "intro": "Adds additional checks.",
+          "study": [
+            "else if"
+          ],
+          "deepDive": [
+            "conditions are evaluated from top to bottom"
+          ],
+          "example": "if (score >= 90) {\n grade = \"A\"\n} else if (score >= 70) {\n grade = \"B\"\n}",
+          "important": "The order of conditions matters."
+        },
+        {
+          "title": "Ternary operator",
+          "intro": "A short form of if.",
+          "study": [
+            "condition ? value1 : value2"
+          ],
+          "deepDive": [
+            "use for simple conditions"
+          ],
+          "example": "let access = age >= 18 ? \"yes\" : \"no\"",
+          "important": "Suitable only for short logic."
+        },
+        {
+          "title": "switch",
+          "intro": "Compares one value against several options.",
+          "study": [
+            "switch",
+            "case",
+            "break",
+            "default"
+          ],
+          "deepDive": [
+            "switch compares using ===",
+            "the role of break",
+            "the role of default"
+          ],
+          "example": "switch(day) {\n case \"Monday\":\n   console.log(\"work day\")\n   break\n default:\n   console.log(\"regular day\")\n}",
+          "important": "Useful when you need to compare one value with several exact options."
+        },
+        {
+          "title": "Nested conditions",
+          "intro": "These are conditions inside other conditions.",
+          "study": [
+            "nested if"
+          ],
+          "deepDive": [
+            "deep nesting hurts readability"
+          ],
+          "example": "if (age >= 18) {\n if (hasPassport) {\n  console.log(\"you can go\")\n }\n}",
+          "important": "Try not to make logic too deeply nested."
+        },
+        {
+          "title": "Short conditions",
+          "intro": "JavaScript allows you to write conditions compactly.",
+          "study": [
+            "&&",
+            "||",
+            "??"
+          ],
+          "deepDive": [
+            "short forms",
+            "default values"
+          ],
+          "example": "isAdmin && showPanel()\nlet name = userName || \"Guest\"\nlet name2 = userName ?? \"Guest\"",
+          "important": "Compact code should still remain readable."
+        },
+        {
+          "title": "Truthy / Falsy",
+          "intro": "Not all values are coerced to true in the same way.",
+          "study": [
+            "false",
+            "0",
+            "\"\"",
+            "null",
+            "undefined",
+            "NaN"
+          ],
+          "deepDive": [
+            "which values are falsy",
+            "why the others are truthy"
+          ],
+          "example": "if (userName) {\n console.log(\"name exists\")\n}",
+          "important": "This is one of the key topics in all JavaScript logic."
+        },
+        {
+          "title": "Clean conditional logic",
+          "intro": "Good logic is logic that is clear and readable.",
+          "study": [
+            "clarity",
+            "readability",
+            "minimum nesting"
+          ],
+          "deepDive": [
+            "how to simplify conditions",
+            "how to avoid unnecessary nesting"
+          ],
+          "example": "if (a && b && c) {\n console.log(\"ok\")\n}",
+          "important": "The simpler your conditions are written, the easier the code is to maintain."
+        }
+      ],
+      "practice": {
+        "tasks": [
+          "check access by age",
+          "determine an even number",
+          "output the maximum of two numbers",
+          "determine the day of the week via switch",
+          "write a short check with &&"
+        ],
+        "finalThought": "Programs are decision trees. JavaScript helps implement logic: if → then, otherwise → different behavior."
+      },
+      "outcomes": [
+        "build conditions with if, else, and else if",
+        "understand how &&, ||, and ! work",
+        "use switch",
+        "understand truthy and falsy",
+        "write cleaner and more readable logic"
+      ]
+    },
+    {
+      "id": "module-4",
+      "hero": {
+        "badge": "Module 4",
+        "module": "Module 4 — Loops in JavaScript",
+        "goal": "Learn to repeat actions programmatically instead of writing the same code many times.",
+        "description": "This module shows how to control repetition in JavaScript: for, while, do while, break, continue, nested loops, and iterating over arrays.",
+        "image": {
+          "src": "images/module-en-4.png",
+          "alt": "Loops in JavaScript"
+        }
+      },
+      "summary": "After completing this module, you should understand how loops work in JavaScript and how to use them consciously.",
+      "stats": [
+        {
+          "value": "10",
+          "label": "Key topics"
+        },
+        {
+          "value": "5",
+          "label": "Main focus points"
+        },
+        {
+          "value": "5",
+          "label": "Practice exercises"
+        }
+      ],
+      "topics": [
+        {
+          "title": "for loop",
+          "intro": "The most universal loop in JavaScript.",
+          "study": [
+            "for (start; condition; step) {}",
+            "start",
+            "condition",
+            "step"
+          ],
+          "deepDive": [
+            "how each part works",
+            "when to use for"
+          ],
+          "example": "for (let i = 0; i < 5; i++) {\n console.log(i)\n}",
+          "important": "Each part of for has its own role: start, check, and counter update."
+        },
+        {
+          "title": "Loop counter",
+          "intro": "A variable that controls the number of repetitions.",
+          "study": [
+            "let i = 0",
+            "counter",
+            "changing the counter"
+          ],
+          "deepDive": [
+            "why i is usually used",
+            "whether other names can be used"
+          ],
+          "example": "for (let i = 0; i < 10; i++) {}",
+          "important": "The main thing is that it is clear this variable is the loop counter."
+        },
+        {
+          "title": "while loop",
+          "intro": "Runs while the condition is true.",
+          "study": [
+            "while (condition) {}",
+            "manual counter update"
+          ],
+          "deepDive": [
+            "useful when the number of repetitions is unknown",
+            "risk of an infinite loop"
+          ],
+          "example": "let i = 0\nwhile (i < 5) {\n console.log(i)\n i++\n}",
+          "important": "In while, you must not forget to change the variable that affects the condition."
+        },
+        {
+          "title": "do while loop",
+          "intro": "Executes at least once.",
+          "study": [
+            "do {} while (condition)",
+            "at least one execution"
+          ],
+          "deepDive": [
+            "when it is really useful",
+            "menus and repeated input"
+          ],
+          "example": "let i = 0\ndo {\n console.log(i)\n i++\n} while (i < 5)",
+          "important": "Suitable for scenarios where code must run at least once."
+        },
+        {
+          "title": "break",
+          "intro": "Completely stops the loop.",
+          "study": [
+            "break",
+            "stopping the loop"
+          ],
+          "deepDive": [
+            "when to use break",
+            "searching for a required element"
+          ],
+          "example": "for (let i = 0; i < 10; i++) {\n if (i === 5) break\n console.log(i)\n}",
+          "important": "break is needed when there is no point in continuing the loop."
+        },
+        {
+          "title": "continue",
+          "intro": "Skips one iteration.",
+          "study": [
+            "continue",
+            "skipping an iteration"
+          ],
+          "deepDive": [
+            "difference between break and continue"
+          ],
+          "example": "for (let i = 0; i < 5; i++) {\n if (i === 2) continue\n console.log(i)\n}",
+          "important": "break ends the whole loop, while continue skips only the current step."
+        },
+        {
+          "title": "Nested loops",
+          "intro": "A loop inside another loop.",
+          "study": [
+            "outer loop",
+            "inner loop"
+          ],
+          "deepDive": [
+            "O(n²) complexity",
+            "tables, grids, matrices"
+          ],
+          "example": "for (let i = 0; i < 3; i++) {\n for (let j = 0; j < 3; j++) {\n  console.log(i, j)\n }\n}",
+          "important": "They are useful, but they increase the load on the algorithm."
+        },
+        {
+          "title": "Iterating over an array with a loop",
+          "intro": "One of the most common tasks.",
+          "study": [
+            "arr.length",
+            "array iteration",
+            "access by index"
+          ],
+          "deepDive": [
+            "what arr.length is",
+            "getting an element by index"
+          ],
+          "example": "let arr = [10, 20, 30]\nfor (let i = 0; i < arr.length; i++) {\n console.log(arr[i])\n}",
+          "important": "arr.length is the number of elements in the array."
+        },
+        {
+          "title": "Reverse loop",
+          "intro": "Sometimes you need to go from the end of an array.",
+          "study": [
+            "arr.length - 1",
+            "i--"
+          ],
+          "deepDive": [
+            "deleting elements",
+            "working with a stack",
+            "iterating from the end"
+          ],
+          "example": "for (let i = arr.length - 1; i >= 0; i--) {\n console.log(arr[i])\n}",
+          "important": "A reverse loop is often useful when removing elements."
+        },
+        {
+          "title": "Infinite loop",
+          "intro": "A loop that never ends.",
+          "study": [
+            "while (true)",
+            "break",
+            "changing the condition"
+          ],
+          "deepDive": [
+            "why the browser may freeze",
+            "a typical mistake is forgetting the counter"
+          ],
+          "example": "while (true) {\n if (condition) break\n}",
+          "important": "One of the most common beginner mistakes is forgetting to change the exit condition."
+        }
+      ],
+      "practice": {
+        "tasks": [
+          "output numbers from 1 to 10",
+          "output even numbers",
+          "calculate the sum of an array",
+          "find the maximum number in an array",
+          "output a 5×5 table using nested loops"
+        ],
+        "finalThought": "Loops let you turn one instruction into thousands of actions. This is the foundation of algorithms, data processing, and interface generation."
+      },
+      "outcomes": [
+        "understand how the for loop works",
+        "control the loop counter",
+        "use while and do while",
+        "apply break and continue",
+        "iterate over arrays with a loop",
+        "understand nested loops",
+        "use a reverse loop",
+        "avoid infinite loops"
+      ]
+    },
+    {
+      "id": "module-5",
+      "hero": {
+        "badge": "Module 5",
+        "module": "Module 5 — Functions and Code Control",
+        "goal": "Learn to break a program into reusable blocks of code.",
+        "description": "This module shows how to turn a set of commands into a clear and flexible structure using functions.",
+        "image": {
+          "src": "images/module-en-5.png",
+          "alt": "Functions and code control"
+        }
+      },
+      "summary": "After completing this module, you should understand how functions help avoid code repetition and build application architecture.",
+      "stats": [
+        {
+          "value": "10",
+          "label": "Key topics"
+        },
+        {
+          "value": "4",
+          "label": "Main focus points"
+        },
+        {
+          "value": "5",
+          "label": "Practice tasks"
+        }
+      ],
+      "topics": [
+        {
+          "title": "Function Declaration",
+          "intro": "The classic way to declare a function.",
+          "study": [
+            "function sayHello() {}",
+            "calling a function"
+          ],
+          "deepDive": [
+            "hoisting",
+            "calling before declaration"
+          ],
+          "example": "function sayHello() {\n console.log(\"Hello\")\n}\n\nsayHello()",
+          "important": "Function Declaration can be called before its declaration thanks to hoisting."
+        },
+        {
+          "title": "Function parameters",
+          "intro": "Functions can receive data from outside.",
+          "study": [
+            "parameters",
+            "arguments"
+          ],
+          "deepDive": [
+            "difference between parameters and arguments"
+          ],
+          "example": "function greet(name) {\n console.log(\"Hello \" + name)\n}\n\ngreet(\"Bogdan\")",
+          "important": "Parameters are inside the declaration, arguments are the actual values passed during the call."
+        },
+        {
+          "title": "return",
+          "intro": "A function can return the result of its work.",
+          "study": [
+            "return",
+            "returning a value"
+          ],
+          "deepDive": [
+            "after return, code no longer executes"
+          ],
+          "example": "function sum(a, b) {\n return a + b\n}\n\nlet result = sum(5, 3)",
+          "important": "return ends the execution of a function."
+        },
+        {
+          "title": "Function Expression",
+          "intro": "A function used as a variable value.",
+          "study": [
+            "const sayHello = function() {}"
+          ],
+          "deepDive": [
+            "no hoisting like Function Declaration has"
+          ],
+          "example": "const sayHello = function() {\n console.log(\"Hello\")\n}",
+          "important": "It is important to understand the moment when the variable is initialized."
+        },
+        {
+          "title": "Arrow functions",
+          "intro": "A modern syntax for writing functions.",
+          "study": [
+            "() => {}",
+            "short syntax"
+          ],
+          "deepDive": [
+            "arrow functions do not have their own this"
+          ],
+          "example": "const sum = (a, b) => a + b",
+          "important": "This is one of the most important features of arrow functions."
+        },
+        {
+          "title": "Default parameters",
+          "intro": "You can set a value if an argument is not passed.",
+          "study": [
+            "name = \"Guest\""
+          ],
+          "deepDive": [
+            "substituting a default value"
+          ],
+          "example": "function greet(name = \"Guest\") {\n console.log(name)\n}\n\ngreet()",
+          "important": "This helps make functions more reliable."
+        },
+        {
+          "title": "Rest parameters",
+          "intro": "Allow you to accept any number of arguments.",
+          "study": [
+            "...numbers"
+          ],
+          "deepDive": [
+            "rest is always the last parameter"
+          ],
+          "example": "function sum(...numbers) {\n console.log(numbers)\n}",
+          "important": "Rest collects arguments into an array."
+        },
+        {
+          "title": "Spread operator",
+          "intro": "Expands an array or an object.",
+          "study": [
+            "...arr",
+            "copying",
+            "merging"
+          ],
+          "deepDive": [
+            "difference between rest and spread"
+          ],
+          "example": "let arr = [1,2,3]\nconsole.log(...arr)\nlet copy = [...arr]",
+          "important": "One syntax, but two different meanings: rest and spread."
+        },
+        {
+          "title": "Scope",
+          "intro": "Defines where a variable is accessible.",
+          "study": [
+            "global scope",
+            "function scope",
+            "block scope"
+          ],
+          "deepDive": [
+            "var vs let vs const"
+          ],
+          "example": "let a = 10\nfunction test(){\n let b = 20\n}\nif(true){\n let c = 30\n}",
+          "important": "Scope is the foundation for understanding code structure."
+        },
+        {
+          "title": "Closure",
+          "intro": "A function remembers variables from its outer environment.",
+          "study": [
+            "inner function",
+            "outer environment"
+          ],
+          "deepDive": [
+            "why the inner function remembers count"
+          ],
+          "example": "function counter(){\n let count = 0\n return function(){\n  count++\n  console.log(count)\n }\n}\nlet c = counter()\nc()\nc()",
+          "important": "Closures are one of the most powerful concepts in JavaScript."
+        }
+      ],
+      "practice": {
+        "tasks": [
+          "create a function that adds numbers",
+          "create a function that finds the maximum number",
+          "create a function that takes an array and returns the sum",
+          "create a function with a default value",
+          "create a simple counter using closure"
+        ],
+        "finalThought": "Functions allow you to write small programs inside a program. Libraries, frameworks, and application architecture are built through functions."
+      },
+      "outcomes": [
+        "understand Function Declaration and hoisting",
+        "distinguish parameters and arguments",
+        "use return",
+        "understand Function Expression",
+        "use arrow functions",
+        "set default parameters",
+        "work with rest and spread",
+        "understand scope",
+        "understand closure"
+      ]
+    },
+    {
+      "id": "module-6",
+      "hero": {
+        "badge": "Module 6",
+        "module": "Module 6 — Arrays in JavaScript",
+        "goal": "Learn to store and modify a set of data.",
+        "description": "This module introduces arrays, one of the most important data structures in JavaScript.",
+        "image": {
+          "src": "images/module-en-6.png",
+          "alt": "Arrays in JavaScript"
+        }
+      },
+      "summary": "After completing this module, you should understand how arrays help store lists of data and how to change their contents.",
+      "stats": [
+        {
+          "value": "10",
+          "label": "Key topics"
+        },
+        {
+          "value": "2",
+          "label": "Method groups"
+        },
+        {
+          "value": "6",
+          "label": "Practice exercises"
+        }
+      ],
+      "topics": [
+        {
+          "title": "Creating an array",
+          "intro": "An array is an ordered list of values.",
+          "study": [
+            "let arr = [1,2,3]",
+            "different data types"
+          ],
+          "deepDive": [
+            "an array is an object",
+            "elements are stored by indexes"
+          ],
+          "example": "let arr = [1,2,3]\nlet data = [10, \"hello\", true, null]",
+          "important": "Technically, an array is an object, but it is used as a list of values."
+        },
+        {
+          "title": "Access by index",
+          "intro": "Each element has an index that starts from 0.",
+          "study": [
+            "arr[index]",
+            "arr.length"
+          ],
+          "deepDive": [
+            "indexing from 0",
+            "array length"
+          ],
+          "example": "let arr = [\"a\",\"b\",\"c\"]\nconsole.log(arr[0])",
+          "important": "arr.length is the number of elements in the array."
+        },
+        {
+          "title": "push",
+          "intro": "Adds an element to the end of an array.",
+          "study": [
+            "arr.push(value)"
+          ],
+          "deepDive": [
+            "changes the original array",
+            "returns the new length"
+          ],
+          "example": "let arr = [1,2,3]\narr.push(4)",
+          "important": "push mutates the original array."
+        },
+        {
+          "title": "pop",
+          "intro": "Removes the last element of an array.",
+          "study": [
+            "arr.pop()"
+          ],
+          "deepDive": [
+            "returns the removed element"
+          ],
+          "example": "let arr = [1,2,3]\narr.pop()",
+          "important": "pop returns the removed element itself."
+        },
+        {
+          "title": "shift",
+          "intro": "Removes the first element of an array.",
+          "study": [
+            "arr.shift()"
+          ],
+          "deepDive": [
+            "slower than pop",
+            "shifts indexes"
+          ],
+          "example": "let arr = [1,2,3]\narr.shift()",
+          "important": "After shift, all remaining elements are moved."
+        },
+        {
+          "title": "unshift",
+          "intro": "Adds an element to the beginning of an array.",
+          "study": [
+            "arr.unshift(value)"
+          ],
+          "deepDive": [
+            "shifts indexes",
+            "changes the original array"
+          ],
+          "example": "let arr = [1,2,3]\narr.unshift(0)",
+          "important": "It works with the beginning of the array, not the end."
+        },
+        {
+          "title": "slice",
+          "intro": "Creates a copy of part of an array.",
+          "study": [
+            "arr.slice(start, end)"
+          ],
+          "deepDive": [
+            "does not change the original array",
+            "end is not included"
+          ],
+          "example": "let arr = [1,2,3,4]\narr.slice(1,3)",
+          "important": "slice returns a new array."
+        },
+        {
+          "title": "splice",
+          "intro": "The most powerful method for changing an array.",
+          "study": [
+            "deletion",
+            "insertion",
+            "replacement"
+          ],
+          "deepDive": [
+            "changes the original array"
+          ],
+          "example": "arr.splice(1,1)\narr.splice(1,0,\"new\")",
+          "important": "slice and splice are easy to confuse, but splice mutates the array."
+        },
+        {
+          "title": "concat",
+          "intro": "Combines arrays.",
+          "study": [
+            "arr1.concat(arr2)"
+          ],
+          "deepDive": [
+            "does not change the original arrays"
+          ],
+          "example": "let a = [1,2]\nlet b = [3,4]\nlet c = a.concat(b)",
+          "important": "concat creates a new array."
+        },
+        {
+          "title": "includes",
+          "intro": "Checks whether an element exists.",
+          "study": [
+            "arr.includes(value)"
+          ],
+          "deepDive": [
+            "returns true or false"
+          ],
+          "example": "let arr = [1,2,3]\narr.includes(2)",
+          "important": "It is useful for logical checks."
+        }
+      ],
+      "practice": {
+        "tasks": [
+          "create an array of 5 elements",
+          "add an element to the end of the array",
+          "remove the last element",
+          "create a copy of part of an array",
+          "combine two arrays",
+          "check if an element exists using includes"
+        ],
+        "finalThought": "An array is a structure that lets you store, iterate, modify, and process data."
+      },
+      "outcomes": [
+        "understand what an array is",
+        "access elements by index",
+        "use push and pop",
+        "use shift and unshift",
+        "distinguish slice and splice",
+        "combine arrays with concat",
+        "check element existence with includes",
+        "understand which methods change an array and which create a new one"
+      ]
+    },
+    {
+      "id": "module-7",
+      "hero": {
+        "badge": "Module 7",
+        "module": "Module 7 — Array Processing Methods",
+        "goal": "Learn to process arrays declaratively instead of using loops.",
+        "description": "Strong JS code often looks like a chain of array methods: filter, map, reduce, and others.",
+        "image": {
+          "src": "images/module-en-7.png",
+          "alt": "Array processing methods"
+        }
+      },
+      "summary": "After this module, you should understand how to process arrays using the modern declarative approach.",
+      "stats": [
+        {
+          "value": "10",
+          "label": "Key topics"
+        },
+        {
+          "value": "4",
+          "label": "Most important methods"
+        },
+        {
+          "value": "5",
+          "label": "Practice exercises"
+        }
+      ],
+      "topics": [
+        {
+          "title": "forEach",
+          "intro": "The simplest method for iterating over an array.",
+          "study": [
+            "arr.forEach(callback)",
+            "iterating over elements"
+          ],
+          "deepDive": [
+            "returns nothing",
+            "used for actions and output"
+          ],
+          "example": "let arr = [1,2,3]\narr.forEach(n => {\n console.log(n)\n})",
+          "important": "forEach is needed when you want to perform an action, not get a new array."
+        },
+        {
+          "title": "map",
+          "intro": "Creates a new array.",
+          "study": [
+            "arr.map(callback)",
+            "transforming elements"
+          ],
+          "deepDive": [
+            "does not change the original array"
+          ],
+          "example": "let numbers = [1,2,3]\nlet result = numbers.map(n => n * 2)",
+          "important": "map is one of the most important methods in modern JavaScript."
+        },
+        {
+          "title": "filter",
+          "intro": "Keeps only the elements that pass the condition.",
+          "study": [
+            "arr.filter(callback)",
+            "filtering data"
+          ],
+          "deepDive": [
+            "search",
+            "filtering interfaces"
+          ],
+          "example": "let numbers = [1,2,3,4]\nlet result = numbers.filter(n => n > 2)",
+          "important": "filter creates a new array containing only the required elements."
+        },
+        {
+          "title": "reduce",
+          "intro": "Lets you turn an array into a single value.",
+          "study": [
+            "reduce",
+            "acc",
+            "initialValue"
+          ],
+          "deepDive": [
+            "what the accumulator acc is"
+          ],
+          "example": "let numbers = [1,2,3]\nlet sum = numbers.reduce((acc, n) => acc + n, 0)",
+          "important": "reduce is the most powerful array method."
+        },
+        {
+          "title": "find",
+          "intro": "Finds the first element that matches the condition.",
+          "study": [
+            "arr.find(callback)"
+          ],
+          "deepDive": [
+            "returns an element, not an array"
+          ],
+          "example": "let numbers = [5,10,15]\nnumbers.find(n => n > 8)",
+          "important": "If you need only the first matching element, use find."
+        },
+        {
+          "title": "some",
+          "intro": "Checks whether there is at least one matching element.",
+          "study": [
+            "arr.some(callback)"
+          ],
+          "deepDive": [
+            "boolean result"
+          ],
+          "example": "let arr = [1,2,3]\narr.some(n => n > 2)",
+          "important": "some answers the question: does at least one such element exist?"
+        },
+        {
+          "title": "every",
+          "intro": "Checks whether all elements satisfy the condition.",
+          "study": [
+            "arr.every(callback)"
+          ],
+          "deepDive": [
+            "boolean result"
+          ],
+          "example": "let arr = [2,4,6]\narr.every(n => n % 2 === 0)",
+          "important": "every checks the condition for the entire array."
+        },
+        {
+          "title": "sort",
+          "intro": "Sorts an array.",
+          "study": [
+            "arr.sort()",
+            "callback for numbers"
+          ],
+          "deepDive": [
+            "by default it sorts as strings"
+          ],
+          "example": "[10,2,5].sort()\narr.sort((a,b) => a - b)",
+          "important": "A callback is required to sort numbers correctly."
+        },
+        {
+          "title": "reverse",
+          "intro": "Reverses an array.",
+          "study": [
+            "arr.reverse()"
+          ],
+          "deepDive": [
+            "changes the original array"
+          ],
+          "example": "[1,2,3].reverse()",
+          "important": "reverse mutates the original array."
+        },
+        {
+          "title": "flat",
+          "intro": "Flattens nested arrays.",
+          "study": [
+            "arr.flat()",
+            "arr.flat(2)"
+          ],
+          "deepDive": [
+            "flattening depth"
+          ],
+          "example": "let arr = [1,[2,3]]\narr.flat()",
+          "important": "Useful when data comes nested."
+        }
+      ],
+      "practice": {
+        "tasks": [
+          "double an array of numbers using map",
+          "keep only even numbers using filter",
+          "calculate the sum with reduce",
+          "find a number greater than 10",
+          "check whether there are negative numbers"
+        ],
+        "finalThought": "Array methods let you write code in the style of: data → processing → result. This is the style of modern JavaScript."
+      },
+      "outcomes": [
+        "understand forEach",
+        "use map",
+        "use filter",
+        "use reduce",
+        "use find",
+        "understand some and every",
+        "sort arrays with sort",
+        "understand chaining"
+      ]
+    },
+    {
+      "id": "module-8",
+      "hero": {
+        "badge": "Module 8",
+        "module": "Module 8 — Objects and Data Structuring",
+        "goal": "Learn to create and manage structured data.",
+        "description": "Objects let you store data by keys and structure information in a convenient way.",
+        "image": {
+          "src": "images/module-en-8.png",
+          "alt": "Objects and data structuring"
+        }
+      },
+      "summary": "After completing this module, you should understand how to create objects, work with properties, and iterate over object data.",
+      "stats": [
+        {
+          "value": "10",
+          "label": "Key topics"
+        },
+        {
+          "value": "3",
+          "label": "Main focus points"
+        },
+        {
+          "value": "6",
+          "label": "Practice exercises"
+        }
+      ],
+      "topics": [
+        {
+          "title": "Creating an object",
+          "intro": "An object is created with curly braces.",
+          "study": [
+            "key : value",
+            "object structure"
+          ],
+          "deepDive": [
+            "keys in an object are strings"
+          ],
+          "example": "let user = {\n name: \"Bogdan\",\n age: 27\n}",
+          "important": "An object is a structure for storing related data."
+        },
+        {
+          "title": "Object properties",
+          "intro": "Each key of an object is one of its properties.",
+          "study": [
+            "name",
+            "age",
+            "job"
+          ],
+          "deepDive": [
+            "properties describe the characteristics of an object"
+          ],
+          "example": "let user = {\n name: \"Bogdan\",\n age: 27,\n job: \"trader\"\n}",
+          "important": "Properties are a way to describe an entity."
+        },
+        {
+          "title": "Dot notation",
+          "intro": "The most common way to work with properties.",
+          "study": [
+            "user.name",
+            "user.age"
+          ],
+          "deepDive": [
+            "works when the key is known in advance"
+          ],
+          "example": "console.log(user.age)",
+          "important": "Dot notation is the most convenient when the key is known."
+        },
+        {
+          "title": "Bracket notation",
+          "intro": "Needed when the property name is stored in a variable.",
+          "study": [
+            "user[\"name\"]",
+            "user[key]"
+          ],
+          "deepDive": [
+            "dynamic properties"
+          ],
+          "example": "let key = \"age\"\nconsole.log(user[key])",
+          "important": "[] is needed for dynamic access."
+        },
+        {
+          "title": "Adding a property",
+          "intro": "An object can be changed after it is created.",
+          "study": [
+            "user.city = \"Odessa\""
+          ],
+          "deepDive": [
+            "an object is mutable"
+          ],
+          "example": "user.city = \"Odessa\"",
+          "important": "New properties can be added at any time."
+        },
+        {
+          "title": "Deleting a property",
+          "intro": "delete is used to remove a property.",
+          "study": [
+            "delete user.age"
+          ],
+          "deepDive": [
+            "changes the original object"
+          ],
+          "example": "delete user.age",
+          "important": "delete mutates the original object."
+        },
+        {
+          "title": "this",
+          "intro": "The context of the current object.",
+          "study": [
+            "this.name",
+            "object methods"
+          ],
+          "deepDive": [
+            "this depends on the way a function is called",
+            "arrow functions do not have their own this"
+          ],
+          "example": "let user = {\n name: \"Bogdan\",\n sayHello() {\n  console.log(this.name)\n }\n}",
+          "important": "this is one of the most important topics in working with objects."
+        },
+        {
+          "title": "Object.keys",
+          "intro": "Returns an array of an object's keys.",
+          "study": [
+            "Object.keys(user)"
+          ],
+          "deepDive": [
+            "object iteration",
+            "data analysis"
+          ],
+          "example": "Object.keys(user)",
+          "important": "Useful when you need to get all keys."
+        },
+        {
+          "title": "Object.values",
+          "intro": "Returns an array of an object's values.",
+          "study": [
+            "Object.values(user)"
+          ],
+          "deepDive": [
+            "working with object values"
+          ],
+          "example": "Object.values(user)",
+          "important": "Convenient when you need only the values."
+        },
+        {
+          "title": "Object.entries",
+          "intro": "Returns key-value pairs.",
+          "study": [
+            "Object.entries(user)"
+          ],
+          "deepDive": [
+            "very useful for iterating over an object"
+          ],
+          "example": "Object.entries(user).forEach(([key, value]) => {\n console.log(key, value)\n})",
+          "important": "Lets you conveniently work with both the key and the value."
+        }
+      ],
+      "practice": {
+        "tasks": [
+          "create a user object",
+          "add a city property",
+          "delete a property",
+          "output all keys",
+          "output all values",
+          "create an object method"
+        ],
+        "finalThought": "Objects let you structure data. This is the foundation of APIs, applications, and code architecture."
+      },
+      "outcomes": [
+        "create objects",
+        "understand object properties",
+        "distinguish dot notation and bracket notation",
+        "add and delete properties",
+        "understand this",
+        "use Object.keys",
+        "use Object.values",
+        "use Object.entries"
+      ]
+    },
+    {
+      "id": "module-9",
+      "hero": {
+        "badge": "Module 9",
+        "module": "Module 9 — DOM (Document Object Model)",
+        "goal": "Learn to find HTML elements and change them with JavaScript.",
+        "description": "The DOM is the structure of an HTML page represented as a tree of objects that JavaScript works with.",
+        "image": {
+          "src": "images/module-en-9.png",
+          "alt": "DOM"
+        }
+      },
+      "summary": "After completing this module, you should understand how JavaScript gets access to HTML and changes elements on the page.",
+      "stats": [
+        {
+          "value": "10",
+          "label": "Key topics"
+        },
+        {
+          "value": "4",
+          "label": "Main focus points"
+        },
+        {
+          "value": "6",
+          "label": "Practice exercises"
+        }
+      ],
+      "topics": [
+        {
+          "title": "document",
+          "intro": "The main point of access to the page.",
+          "study": [
+            "document"
+          ],
+          "deepDive": [
+            "the DOM is the object model of HTML"
+          ],
+          "example": "console.log(document)",
+          "important": "All work with the DOM starts through document."
+        },
+        {
+          "title": "querySelector",
+          "intro": "Finds the first element by a CSS selector.",
+          "study": [
+            "document.querySelector(\".title\")"
+          ],
+          "deepDive": [
+            "works like CSS selectors"
+          ],
+          "example": "document.querySelector(\".title\")",
+          "important": "One of the most universal ways to find an element."
+        },
+        {
+          "title": "querySelectorAll",
+          "intro": "Finds all elements by a selector.",
+          "study": [
+            "document.querySelectorAll(\".item\")",
+            "NodeList"
+          ],
+          "deepDive": [
+            "NodeList looks like an array, but it is not an array"
+          ],
+          "example": "let items = document.querySelectorAll(\".item\")",
+          "important": "Needed when you work with a group of elements."
+        },
+        {
+          "title": "getElementById",
+          "intro": "The fastest way to find an element by id.",
+          "study": [
+            "document.getElementById(\"header\")"
+          ],
+          "deepDive": [
+            "works only with id"
+          ],
+          "example": "let header = document.getElementById(\"header\")",
+          "important": "If there is an id, this is a very convenient method."
+        },
+        {
+          "title": "textContent",
+          "intro": "Reads and changes the text of an element.",
+          "study": [
+            "element.textContent"
+          ],
+          "deepDive": [
+            "safer than innerHTML"
+          ],
+          "example": "document.getElementById(\"title\").textContent = \"Hello\"",
+          "important": "textContent inserts text, not HTML."
+        },
+        {
+          "title": "innerHTML",
+          "intro": "Lets you insert HTML code.",
+          "study": [
+            "element.innerHTML"
+          ],
+          "deepDive": [
+            "risk of XSS attacks"
+          ],
+          "example": "element.innerHTML = \"<b>Hello</b>\"",
+          "important": "innerHTML should be used carefully."
+        },
+        {
+          "title": "classList",
+          "intro": "Lets you work with classes.",
+          "study": [
+            "add",
+            "remove",
+            "toggle",
+            "contains"
+          ],
+          "deepDive": [
+            "the main way to control styles through JS"
+          ],
+          "example": "element.classList.add(\"active\")",
+          "important": "classList is a key tool for interface control."
+        },
+        {
+          "title": "setAttribute",
+          "intro": "Adds or changes an attribute.",
+          "study": [
+            "element.setAttribute(name, value)"
+          ],
+          "deepDive": [
+            "difference between element.src and setAttribute"
+          ],
+          "example": "img.setAttribute(\"alt\", \"photo\")",
+          "important": "Convenient for universal work with attributes."
+        },
+        {
+          "title": "removeAttribute",
+          "intro": "Removes an attribute from an element.",
+          "study": [
+            "element.removeAttribute(name)"
+          ],
+          "deepDive": [
+            "returning an element to its normal state"
+          ],
+          "example": "button.removeAttribute(\"disabled\")",
+          "important": "Often used in forms and interactive interfaces."
+        },
+        {
+          "title": "dataset",
+          "intro": "Working with data attributes.",
+          "study": [
+            "data-id",
+            "element.dataset.id"
+          ],
+          "deepDive": [
+            "storing data in the DOM"
+          ],
+          "example": "<div data-id=\"10\"></div>\nelement.dataset.id",
+          "important": "Very convenient for passing data to interface elements."
+        }
+      ],
+      "practice": {
+        "tasks": [
+          "find an element by class",
+          "change text",
+          "add a class",
+          "remove a class",
+          "add an attribute",
+          "get a data attribute"
+        ],
+        "finalThought": "The DOM lets JavaScript control HTML. This is how a page becomes interactive."
+      },
+      "outcomes": [
+        "understand document",
+        "use querySelector",
+        "use querySelectorAll",
+        "use getElementById",
+        "distinguish textContent and innerHTML",
+        "work with classList",
+        "work with attributes",
+        "use dataset"
+      ]
+    },
+    {
+      "id": "module-10",
+      "hero": {
+        "badge": "Module 10",
+        "module": "Module 10 — DOM Manipulation",
+        "goal": "Learn to create, insert, and remove HTML elements with JavaScript.",
+        "description": "This module is dedicated to dynamic DOM control: creating, inserting, removing, and cloning elements.",
+        "image": {
+          "src": "images/module-en-10.png",
+          "alt": "DOM Manipulation"
+        }
+      },
+      "summary": "After completing this module, you should understand how JavaScript creates HTML elements, inserts them, removes them, and controls the DOM structure.",
+      "stats": [
+        {
+          "value": "10",
+          "label": "Key topics"
+        },
+        {
+          "value": "4",
+          "label": "Main focus points"
+        },
+        {
+          "value": "6",
+          "label": "Practice exercises"
+        }
+      ],
+      "topics": [
+        {
+          "title": "createElement",
+          "intro": "Creates a new HTML element in memory.",
+          "study": [
+            "document.createElement(\"tag\")"
+          ],
+          "deepDive": [
+            "2 stages: creation and insertion into the DOM"
+          ],
+          "example": "let div = document.createElement(\"div\")",
+          "important": "createElement alone does not yet insert the element into the page."
+        },
+        {
+          "title": "append",
+          "intro": "Adds an element to the end of the parent.",
+          "study": [
+            "parent.append(element)"
+          ],
+          "deepDive": [
+            "can add text, elements, and several elements"
+          ],
+          "example": "let li = document.createElement(\"li\")\nli.textContent = \"Item\"\nlist.append(li)",
+          "important": "append is one of the most convenient ways to insert an element."
+        },
+        {
+          "title": "prepend",
+          "intro": "Adds an element to the beginning of the parent.",
+          "study": [
+            "parent.prepend(element)"
+          ],
+          "deepDive": [
+            "append → end, prepend → beginning"
+          ],
+          "example": "list.prepend(li)",
+          "important": "Suitable when a new element should appear first."
+        },
+        {
+          "title": "before",
+          "intro": "Inserts an element before the current element.",
+          "study": [
+            "element.before(newElement)"
+          ],
+          "deepDive": [
+            "positioning relative to the current node"
+          ],
+          "example": "item.before(newItem)",
+          "important": "Convenient for precise insertion into the DOM."
+        },
+        {
+          "title": "after",
+          "intro": "Inserts an element after the current element.",
+          "study": [
+            "element.after(newElement)"
+          ],
+          "deepDive": [
+            "placing it next to the current element"
+          ],
+          "example": "item.after(newItem)",
+          "important": "Convenient when you need to insert an element immediately after another one."
+        },
+        {
+          "title": "remove",
+          "intro": "Removes an element from the DOM.",
+          "study": [
+            "element.remove()"
+          ],
+          "deepDive": [
+            "removed only from the DOM, the variable can remain"
+          ],
+          "example": "item.remove()",
+          "important": "The element disappears from the page, but the JS reference to it may still remain."
+        },
+        {
+          "title": "cloneNode",
+          "intro": "Creates a copy of an element.",
+          "study": [
+            "cloneNode(false)",
+            "cloneNode(true)"
+          ],
+          "deepDive": [
+            "shallow and deep cloning",
+            "clones do not copy events"
+          ],
+          "example": "let copy = card.cloneNode(true)",
+          "important": "Very useful for reusing a ready-made structure."
+        },
+        {
+          "title": "parentNode",
+          "intro": "Lets you get the parent element.",
+          "study": [
+            "element.parentNode"
+          ],
+          "deepDive": [
+            "moving upward through the DOM"
+          ],
+          "example": "item.parentNode.remove()",
+          "important": "Needed when you need to reach the parent and work with it."
+        },
+        {
+          "title": "children",
+          "intro": "Gets all children of an element.",
+          "study": [
+            "element.children",
+            "HTMLCollection"
+          ],
+          "deepDive": [
+            "this is a live collection"
+          ],
+          "example": "let items = list.children",
+          "important": "children returns child elements, not any kind of content."
+        },
+        {
+          "title": "closest",
+          "intro": "Finds the nearest parent by selector.",
+          "study": [
+            "element.closest(selector)"
+          ],
+          "deepDive": [
+            "very convenient for events and delegation"
+          ],
+          "example": "button.closest(\".card\")",
+          "important": "One of the most useful methods for interactive interfaces."
+        }
+      ],
+      "practice": {
+        "tasks": [
+          "create a new div",
+          "add text to an element",
+          "insert an element into a list",
+          "remove an element",
+          "clone an element",
+          "find a parent using closest"
+        ],
+        "finalThought": "DOM Manipulation allows JavaScript to create HTML. This is the foundation of interactive interfaces, SPA applications, and UI components."
+      },
+      "outcomes": [
+        "create elements with createElement",
+        "add elements with append and prepend",
+        "insert elements with before and after",
+        "remove elements with remove",
+        "clone elements with cloneNode",
+        "understand parentNode and children",
+        "use closest"
+      ]
+    }
+  ]
+}

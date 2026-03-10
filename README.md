@@ -1,120 +1,287 @@
 # BYTEWEBNEST
 
-![BYTEWEBNEST Banner](images/banner.png)
+![BYTEWEBNEST Banner](images/banner-en.png)
 
-## Interactive roadmap for web developers
+**Interactive roadmap for web developers**
 
-BYTEWEBNEST — это интерактивная карта развития веб‑разработчика.
-Сайт показывает системную структуру изучения JavaScript и веб‑разработки от базовых тем до более сложных уровней.
+English \| Русский \| Українська
 
-Каждый модуль включает:
-- темы обучения
-- ключевые объяснения
-- практику для закрепления
-- итоговые выводы
+------------------------------------------------------------------------
 
-Цель проекта — создать **понятную и логичную систему обучения**, чтобы не изучать технологии хаотично.
+# 🇬🇧 English
 
----
+## About the Project
 
-## Что включает курс
+BYTEWEBNEST is an interactive roadmap designed for web developers.
 
-BYTEWEBNEST содержит:
+The project provides a structured learning path for JavaScript and
+modern web development --- from fundamental concepts to more advanced
+levels.
 
-- структурированную roadmap обучения
-- модули обучения
-- теорию + практику
-- постепенное развитие навыков
-- навигацию по темам и уровням
+Each module includes:
 
----
+-   learning topics
+-   key explanations
+-   practical exercises
+-   final conclusions and outcomes
 
-## Доступ к курсу
+The goal of the project is to create a **clear and logical learning
+system**, so developers can avoid studying technologies in a chaotic
+way.
 
-BYTEWEBNEST — платный образовательный проект.
+------------------------------------------------------------------------
 
-Полный доступ ко всем материалам стоит:
+## Course Content
+
+BYTEWEBNEST includes:
+
+-   a structured development roadmap
+-   learning modules
+-   theory + practice
+-   progressive skill development
+-   navigation by topics and levels
+
+------------------------------------------------------------------------
+
+## Course Access
+
+BYTEWEBNEST is a paid educational project.
+
+Full access to the course materials costs:
 
 **10 USD**
 
-Оплата помогает поддерживать разработку курса и добавление новых модулей.
+Payments support the continued development of the course and the
+creation of new modules.
 
----
+------------------------------------------------------------------------
 
-## Получить доступ
+## Get Access
 
-Для получения доступа напиши в Telegram:
+To get access, contact via Telegram:
 
 **@bytewebnest**
 
 https://t.me/bytewebnest
 
----
+------------------------------------------------------------------------
+
+## Technologies
+
+The project is built using:
+
+-   HTML
+-   CSS
+-   JavaScript
+-   JSON
+-   GitHub Pages
+
+------------------------------------------------------------------------
+
+## Run the Project Locally
+
+To correctly load JSON files using `fetch()`, the project must be run
+through a local server.
+
+You can use:
+
+-   VS Code Live Server
+-   Python server
+-   Open Server Panel
+-   any local development server
+
+------------------------------------------------------------------------
+
+## Deploy on GitHub Pages
+
+1.  Create a repository (for example `bytewebnest`)
+2.  Upload all project files
+3.  Open `Settings → Pages`
+4.  Select `Deploy from branch`
+5.  Choose the `main` branch
+
+After that the site will be available at:
+
+https://admin-bytewebnest.github.io/bytewebnest-roadmap/
+
+------------------------------------------------------------------------
+
+## Project Structure
+
+bytewebnest/
+
+├ index.html\
+├ css/style.css\
+├ js/app.js\
+├ data/content.json\
+├ data/module-status.json\
+├ images/\
+├ partials/\
+├ robots.txt\
+├ sitemap.xml\
+└ README.md
+
+------------------------------------------------------------------------
+
+JavaScript roadmap\
+Frontend roadmap\
+Learn JavaScript\
+Frontend learning path\
+Programming roadmap
+
+------------------------------------------------------------------------
+
+## Copyright
+
+Course materials are protected by copyright.
+
+------------------------------------------------------------------------
+
+# 🇷🇺 Русский
+
+## О проекте
+
+BYTEWEBNEST --- это интерактивная карта развития для веб‑разработчиков.
+
+Проект показывает структурированный путь изучения JavaScript и
+веб‑разработки --- от базовых тем до более сложных уровней.
+
+Каждый модуль включает:
+
+-   темы обучения
+-   ключевые объяснения
+-   практику
+-   итоговые выводы
+
+Цель проекта --- создать **понятную и логичную систему обучения**, чтобы
+не изучать технологии хаотично.
+
+------------------------------------------------------------------------
+
+## Что включает курс
+
+BYTEWEBNEST содержит:
+
+-   структурированную roadmap обучения
+-   модули обучения
+-   теорию + практику
+-   постепенное развитие навыков
+-   навигацию по темам и уровням
+
+------------------------------------------------------------------------
+
+## Доступ к курсу
+
+BYTEWEBNEST --- платный образовательный проект.
+
+Полный доступ ко всем материалам стоит:
+
+**10 USD**
+
+Оплата помогает поддерживать разработку курса и добавление новых
+модулей.
+
+------------------------------------------------------------------------
+
+## Получить доступ
+
+Напишите в Telegram:
+
+**@bytewebnest**
+
+https://t.me/bytewebnest
+
+------------------------------------------------------------------------
 
 ## Технологии проекта
 
 Проект построен на:
 
-- HTML
-- CSS
-- JavaScript
-- JSON
-- GitHub Pages
+-   HTML
+-   CSS
+-   JavaScript
+-   JSON
+-   GitHub Pages
 
----
+------------------------------------------------------------------------
 
 ## Запуск проекта локально
 
-Чтобы JSON файлы корректно загружались через `fetch()`, сайт нужно запускать через локальный сервер.
+Чтобы JSON‑файлы корректно загружались через `fetch()`, сайт необходимо
+запускать через локальный сервер.
 
 Можно использовать:
 
-- VS Code Live Server
-- Python server
-- Open Server Panel
-- любой локальный dev server
+-   VS Code Live Server
+-   Python server
+-   Open Server Panel
+-   любой локальный dev server
 
----
+------------------------------------------------------------------------
 
 ## Размещение на GitHub Pages
 
-1. Создай репозиторий (например `bytewebnest`)
-2. Загрузи все файлы проекта
-3. Открой `Settings → Pages`
-4. Выбери `Deploy from branch`
-5. Укажи ветку `main`
+1.  Создайте репозиторий (`bytewebnest`)
+2.  Загрузите все файлы проекта
+3.  Откройте `Settings → Pages`
+4.  Выберите `Deploy from branch`
+5.  Укажите ветку `main`
 
 После этого сайт будет доступен по адресу:
 
 https://admin-bytewebnest.github.io/bytewebnest-roadmap/
 
-Не забудь заменить `username` на свой GitHub username.
+------------------------------------------------------------------------
 
----
+# 🇺🇦 Українська
 
-## Структура проекта
+## Про проєкт
 
-bytewebnest/
-│
-├ index.html
-├ css/style.css
-├ js/app.js
-├ data/content.json
-├ data/module-status.json
-├ images/
-├ partials/
-├ robots.txt
-├ sitemap.xml
-└ README.md
+BYTEWEBNEST --- це інтерактивна карта розвитку для веброзробників.
 
----
-JavaScript roadmap
-Frontend roadmap
-Learn JavaScript
-Frontend learning path
-Programming roadmap
+Проєкт показує структурований шлях вивчення JavaScript і веброзробки ---
+від базових тем до складніших рівнів.
 
+Кожен модуль містить:
 
-## Авторские права
+-   теми навчання
+-   ключові пояснення
+-   практику
+-   підсумкові висновки
 
-Материалы курса защищены авторским правом.
+Мета проєкту --- створити **зрозумілу та логічну систему навчання**, щоб
+не вивчати технології хаотично.
+
+------------------------------------------------------------------------
+
+## Що містить курс
+
+BYTEWEBNEST містить:
+
+-   структуровану roadmap навчання
+-   навчальні модулі
+-   теорію + практику
+-   поступовий розвиток навичок
+-   навігацію за темами та рівнями
+
+------------------------------------------------------------------------
+
+## Доступ до курсу
+
+BYTEWEBNEST --- платний освітній проєкт.
+
+Повний доступ до всіх матеріалів коштує:
+
+**10 USD**
+
+Оплата допомагає підтримувати розвиток курсу та створення нових модулів.
+
+------------------------------------------------------------------------
+
+## Отримати доступ
+
+Напишіть у Telegram:
+
+**@bytewebnest**
+
+https://t.me/bytewebnest

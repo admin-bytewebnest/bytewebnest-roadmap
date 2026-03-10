@@ -1,3 +1,4 @@
+
 const moduleTitle = document.getElementById("moduleTitle");
 const moduleGoal = document.getElementById("moduleGoal");
 const moduleDescription = document.getElementById("moduleDescription");
@@ -60,21 +61,207 @@ let currentProgressObserver = null;
 let currentView = "module";
 let mapPageLoaded = false;
 
+const CURRENT_LANG = getCurrentLang();
+const BASE_PREFIX = getBasePrefix();
 const STORAGE_KEY = "bytewebnest_access_unlocked";
 const TOPICS_COLLAPSED_KEY = "bytewebnest_topics_collapsed";
-const LAST_TRACK_KEY = "bytewebnest_last_track";
-const LAST_MODULE_KEY = "bytewebnest_last_module";
-const COURSE_PROGRESS_KEY = "bytewebnest_progress";
+const LAST_TRACK_KEY = `bytewebnest_last_track_${CURRENT_LANG}`;
+const LAST_MODULE_KEY = `bytewebnest_last_module_${CURRENT_LANG}`;
+const COURSE_PROGRESS_KEY = `bytewebnest_progress_${CURRENT_LANG}`;
+
+const UI = {
+  en: {
+    loadJsonError: "JSON loading error",
+    noModules: "The JSON file does not contain a modules array",
+    noTracks: "The JSON file does not contain a tracks array",
+    allUnlocked: "All topics, practice and final outcomes are unlocked.",
+    moduleLocked: "This module is locked. After unlocking, all topics, practice and final outcomes will become available.",
+    topicsOpenedPartial: (freeCount) => `Currently ${freeCount} topic(s) are open. The remaining topics, practice and final outcomes are available after unlocking.`,
+    topicsOpenedPracticeLocked: "Topics are open, but practice and final outcomes become available after unlocking.",
+    moduleSmall: (index) => `Module ${index + 1}`,
+    locked: "locked",
+    topicLabel: (index) => `Topic ${index + 1}`,
+    topicLocked: "locked",
+    studyTitle: "What to study",
+    deepDiveTitle: "What to deepen your understanding of",
+    comingSoonSection: "Section in development",
+    opensOn: (date) => `Available: ${date || "Coming soon"}`,
+    comingSoonDescription: "This section is being prepared and will become available later.",
+    comingSoonSummary: "This section is currently in development. As soon as the materials are ready, full modules, topics, practice and outcomes will appear here.",
+    followUpdates: "Follow course updates — this section will be added later.",
+    contentUnavailable: "This level content is not available yet.",
+    newContent: "New content",
+    openingDate: "Launch date",
+    futureModules: "Future modules",
+    noModulesTitle: "There are no modules in this level yet",
+    addModulesJson: "Add modules to JSON",
+    contentLater: "Content will appear later.",
+    futureModulesText: "You will be able to add the next modules of this level here.",
+    topicsNotAdded: "Topics have not been added yet.",
+    unlockError: "Wrong code. Try again.",
+    unlockSuccess: "Access granted. All content is unlocked.",
+    collapse: "Collapse",
+    expand: "Expand",
+    mapLoadError: "Roadmap loading error",
+    mapFallback: "The learning roadmap is currently in development. A visual structure of all levels and modules will appear here soon.",
+    loadModuleFail: "Could not load the module",
+    checkContentFile: "Check the file data/content.en.json",
+    reasonPrefix: "Reason",
+    emptyTrackComingSoon: (date) => `This section is being prepared. Access will open: ${date || "Coming soon"}.`,
+    emptyTrackPrepared: "This level structure is already prepared, but you will add modules for it later.",
+    completionTitle: "🎉 Course completed",
+    completionText: "You finished the ByteWebNest JavaScript course. You now understand the core of modern JavaScript.",
+    completionBtn: "Restart learning"
+  },
+  ru: {
+    loadJsonError: "Ошибка загрузки JSON",
+    noModules: "В JSON нет массива modules",
+    noTracks: "В JSON нет массива tracks",
+    allUnlocked: "Все темы, практика и итоговые результаты открыты.",
+    moduleLocked: "Этот модуль закрыт. После разблокировки откроются все темы, практика и итоговые результаты.",
+    topicsOpenedPartial: (freeCount) => `Сейчас открыто ${freeCount} тем(ы). Остальные темы, практика и итоговые результаты доступны после разблокировки.`,
+    topicsOpenedPracticeLocked: "Темы открыты, но практика и итоговые результаты доступны после разблокировки.",
+    moduleSmall: (index) => `Модуль ${index + 1}`,
+    locked: "закрыто",
+    topicLabel: (index) => `Тема ${index + 1}`,
+    topicLocked: "закрыто",
+    studyTitle: "Что изучить",
+    deepDiveTitle: "На что углубить понимание",
+    comingSoonSection: "Раздел в разработке",
+    opensOn: (date) => `Доступ откроется: ${date || "Скоро"}`,
+    comingSoonDescription: "Этот раздел готовится и станет доступен позже.",
+    comingSoonSummary: "Сейчас этот раздел находится в разработке. Как только материалы будут готовы, здесь появятся полноценные модули, темы, практика и результаты.",
+    followUpdates: "Следи за обновлениями курса — этот раздел будет добавлен позже.",
+    contentUnavailable: "Контент этого уровня пока недоступен.",
+    newContent: "Новый контент",
+    openingDate: "Дата открытия",
+    futureModules: "Будущие модули",
+    noModulesTitle: "В этом уровне пока нет модулей",
+    addModulesJson: "Добавь модули в JSON",
+    contentLater: "Контент появится позже.",
+    futureModulesText: "Сюда можно будет добавить следующие модули этого уровня.",
+    topicsNotAdded: "Темы пока не добавлены.",
+    unlockError: "Неверный код. Попробуй ещё раз.",
+    unlockSuccess: "Доступ открыт. Весь контент разблокирован.",
+    collapse: "Свернуть",
+    expand: "Развернуть",
+    mapLoadError: "Ошибка при загрузке карты",
+    mapFallback: "Карта обучения сейчас в разработке. Скоро здесь появится визуальная структура всех уровней и модулей.",
+    loadModuleFail: "Не удалось загрузить модуль",
+    checkContentFile: "Проверь файл data/content.ru.json",
+    reasonPrefix: "Причина",
+    emptyTrackComingSoon: (date) => `Этот раздел готовится. Доступ откроется: ${date || "Скоро"}.`,
+    emptyTrackPrepared: "Этот уровень уже подготовлен в структуре, но модули для него ты добавишь позже.",
+    completionTitle: "🎉 Курс завершён",
+    completionText: "Ты завершил JavaScript-курс ByteWebNest. Теперь ты понимаешь основу современного JavaScript.",
+    completionBtn: "Начать обучение заново"
+  },
+  uk: {
+    loadJsonError: "Помилка завантаження JSON",
+    noModules: "У JSON немає масиву modules",
+    noTracks: "У JSON немає масиву tracks",
+    allUnlocked: "Усі теми, практика та підсумкові результати відкриті.",
+    moduleLocked: "Цей модуль закритий. Після розблокування відкриються всі теми, практика та підсумкові результати.",
+    topicsOpenedPartial: (freeCount) => `Зараз відкрито ${freeCount} тем(и). Решта тем, практика та підсумкові результати доступні після розблокування.`,
+    topicsOpenedPracticeLocked: "Теми відкриті, але практика та підсумкові результати доступні після розблокування.",
+    moduleSmall: (index) => `Модуль ${index + 1}`,
+    locked: "закрито",
+    topicLabel: (index) => `Тема ${index + 1}`,
+    topicLocked: "закрито",
+    studyTitle: "Що вивчити",
+    deepDiveTitle: "Що варто поглибити",
+    comingSoonSection: "Розділ у розробці",
+    opensOn: (date) => `Доступ відкриється: ${date || "Скоро"}`,
+    comingSoonDescription: "Цей розділ готується і стане доступним пізніше.",
+    comingSoonSummary: "Зараз цей розділ перебуває в розробці. Щойно матеріали будуть готові, тут з’являться повноцінні модулі, теми, практика та результати.",
+    followUpdates: "Слідкуй за оновленнями курсу — цей розділ буде додано пізніше.",
+    contentUnavailable: "Контент цього рівня поки недоступний.",
+    newContent: "Новий контент",
+    openingDate: "Дата відкриття",
+    futureModules: "Майбутні модулі",
+    noModulesTitle: "У цьому рівні поки немає модулів",
+    addModulesJson: "Додай модулі в JSON",
+    contentLater: "Контент з’явиться пізніше.",
+    futureModulesText: "Сюди можна буде додати наступні модулі цього рівня.",
+    topicsNotAdded: "Теми ще не додані.",
+    unlockError: "Неправильний код. Спробуй ще раз.",
+    unlockSuccess: "Доступ відкрито. Увесь контент розблоковано.",
+    collapse: "Згорнути",
+    expand: "Розгорнути",
+    mapLoadError: "Помилка під час завантаження карти",
+    mapFallback: "Карта навчання зараз у розробці. Незабаром тут з’явиться візуальна структура всіх рівнів і модулів.",
+    loadModuleFail: "Не вдалося завантажити модуль",
+    checkContentFile: "Перевір файл data/content.uk.json",
+    reasonPrefix: "Причина",
+    emptyTrackComingSoon: (date) => `Цей розділ готується. Доступ відкриється: ${date || "Скоро"}.`,
+    emptyTrackPrepared: "Структура цього рівня вже підготовлена, але модулі для нього ти додаси пізніше.",
+    completionTitle: "🎉 Курс завершено",
+    completionText: "Ти завершив JavaScript-курс ByteWebNest. Тепер ти розумієш основу сучасного JavaScript.",
+    completionBtn: "Почати навчання заново"
+  }
+};
+
+function t(key, ...args) {
+  const dict = UI[CURRENT_LANG] || UI.en;
+  const value = dict[key] ?? UI.en[key];
+  return typeof value === "function" ? value(...args) : value;
+}
+
+function getCurrentLang() {
+  const htmlLang = document.documentElement.lang?.trim().toLowerCase();
+  if (htmlLang === "ru" || htmlLang === "uk" || htmlLang === "en") {
+    return htmlLang;
+  }
+
+  const path = window.location.pathname.toLowerCase();
+  if (path.includes("/ru/")) return "ru";
+  if (path.includes("/uk/")) return "uk";
+  return "en";
+}
+
+function getBasePrefix() {
+  return CURRENT_LANG === "en" ? "./" : "../";
+}
+
+function getContentPath() {
+  return `${BASE_PREFIX}data/content.${CURRENT_LANG}.json`;
+}
+
+function getStatusPath() {
+  return `${BASE_PREFIX}data/module-status.${CURRENT_LANG}.json`;
+}
+
+function getRoadmapPath() {
+  return `${BASE_PREFIX}partials/${CURRENT_LANG}/roadmap.${CURRENT_LANG}.html`;
+}
+
+function getAssetPath(path) {
+  if (!path) return "";
+  if (/^(https?:)?\/\//.test(path)) return path;
+  return CURRENT_LANG === "en" ? path : `../${path.replace(/^\.?\//, "")}`;
+}
+
+function updateCompletionScreenText() {
+  const title = completionScreen?.querySelector("h2");
+  const text = completionScreen?.querySelector("p");
+  const button = completionScreen?.querySelector(".btn");
+
+  if (title) title.textContent = t("completionTitle");
+  if (text) text.textContent = t("completionText");
+  if (button) button.textContent = t("completionBtn");
+}
 
 async function loadContent() {
   try {
+    updateCompletionScreenText();
+
     const [contentResponse, statusResponse] = await Promise.all([
-      fetch("./data/content.json"),
-      fetch("./data/module-status.json")
+      fetch(getContentPath()),
+      fetch(getStatusPath())
     ]);
 
     if (!contentResponse.ok) {
-      throw new Error(`Ошибка загрузки JSON: ${contentResponse.status}`);
+      throw new Error(`${t("loadJsonError")}: ${contentResponse.status}`);
     }
 
     appData = await contentResponse.json();
@@ -86,11 +273,11 @@ async function loadContent() {
     }
 
     if (!appData.modules || !appData.modules.length) {
-      throw new Error("В JSON нет массива modules");
+      throw new Error(t("noModules"));
     }
 
     if (!appData.tracks || !appData.tracks.length) {
-      throw new Error("В JSON нет массива tracks");
+      throw new Error(t("noTracks"));
     }
 
     currentTrackId = getInitialTrackId();
@@ -106,7 +293,7 @@ async function loadContent() {
       await showMapView();
     }
   } catch (error) {
-    console.error("Ошибка при загрузке контента:", error);
+    console.error("Content loading error:", error);
     showFallbackError(error.message);
   }
 }
@@ -376,21 +563,21 @@ function isPremiumSectionAccessible() {
 
 function getLockedTopicsText(moduleId, totalTopics) {
   if (isGloballyUnlocked()) {
-    return "Все темы, практика и итоговые результаты открыты.";
+    return t("allUnlocked");
   }
 
   if (moduleId !== appData.access.freeModuleId) {
-    return "Этот модуль закрыт. После разблокировки откроются все темы, практика и итоговые результаты.";
+    return t("moduleLocked");
   }
 
   const freeCount = Number(appData.access.freeTopicsCount || 0);
   const lockedCount = Math.max(totalTopics - freeCount, 0);
 
   if (lockedCount <= 0) {
-    return "Темы открыты, но практика и итоговые результаты доступны после разблокировки.";
+    return t("topicsOpenedPracticeLocked");
   }
 
-  return `Сейчас открыто ${freeCount} тем(ы). Остальные темы, практика и итоговые результаты доступны после разблокировки.`;
+  return t("topicsOpenedPartial", freeCount);
 }
 
 function updateUnlockButtonState() {
@@ -474,8 +661,8 @@ function renderModulesForTrack(trackId, activeModuleId) {
     const showComingSoon = shouldShowComingSoon(trackId);
 
     moduleEmptyState.textContent = showComingSoon && trackStatus
-      ? `Этот раздел готовится. Доступ откроется: ${trackStatus.availableDate || "Скоро"}.`
-      : "Этот уровень уже подготовлен в структуре, но модули для него ты добавишь позже.";
+      ? t("emptyTrackComingSoon", trackStatus.availableDate)
+      : t("emptyTrackPrepared");
 
     moduleEmptyState.classList.add("is-visible");
     return;
@@ -490,10 +677,10 @@ function renderModulesForTrack(trackId, activeModuleId) {
 
     button.innerHTML = `
       <span class="module-link__content">
-        <span class="module-link__small">Модуль ${index + 1}</span>
+        <span class="module-link__small">${escapeHtml(t("moduleSmall", index))}</span>
         <span class="module-link__title">${escapeHtml(module.hero.module)}</span>
       </span>
-      ${!isAccessible ? '<span class="module-link__lock">locked</span>' : ""}
+      ${!isAccessible ? `<span class="module-link__lock">${escapeHtml(t("locked"))}</span>` : ""}
     `;
 
     button.addEventListener("click", () => {
@@ -538,7 +725,7 @@ function renderTopicNavigation(module) {
 
     element.innerHTML = `
       <span class="topic-link__content">${index + 1}. ${escapeHtml(topic.title)}</span>
-      ${!isAccessible ? '<span class="topic-link__lock">закрыто</span>' : ""}
+      ${!isAccessible ? `<span class="topic-link__lock">${escapeHtml(t("topicLocked"))}</span>` : ""}
     `;
 
     if (!isAccessible) {
@@ -573,26 +760,26 @@ function renderModuleContent(track, module) {
     if (showComingSoon && trackStatus) {
       document.title = `${track.title} — BYTEWEBNEST`;
 
-      moduleTitle.textContent = trackStatus.title || "Раздел в разработке";
-      moduleGoal.textContent = `Доступ откроется: ${trackStatus.availableDate || "Скоро"}`;
-      moduleDescription.textContent = trackStatus.description || "Этот раздел готовится и станет доступен позже.";
-      moduleSummary.textContent = "Сейчас этот раздел находится в разработке. Как только материалы будут готовы, здесь появятся полноценные модули, темы, практика и результаты.";
-      finalThought.textContent = "Следи за обновлениями курса — этот раздел будет добавлен позже.";
-      sectionSubtitle.textContent = "Контент этого уровня пока недоступен.";
+      moduleTitle.textContent = trackStatus.title || t("comingSoonSection");
+      moduleGoal.textContent = t("opensOn", trackStatus.availableDate);
+      moduleDescription.textContent = trackStatus.description || t("comingSoonDescription");
+      moduleSummary.textContent = t("comingSoonSummary");
+      finalThought.textContent = t("followUpdates");
+      sectionSubtitle.textContent = t("contentUnavailable");
       trackBadge.textContent = track ? track.title : "BYTEWEBNEST ROADMAP";
-      heroBadge.textContent = "Скоро";
+      heroBadge.textContent = trackStatus.availableDate ? trackStatus.availableDate : "Soon";
       heroStats.innerHTML = `
         <li class="fade-up">
-          <strong>Скоро</strong>
-          <span>Новый контент</span>
+          <strong>${escapeHtml(trackStatus.availableDate ? trackStatus.availableDate : (CURRENT_LANG === "en" ? "Soon" : "Скоро"))}</strong>
+          <span>${escapeHtml(t("newContent"))}</span>
         </li>
         <li class="fade-up">
           <strong>${escapeHtml(trackStatus.availableDate || "TBA")}</strong>
-          <span>Дата открытия</span>
+          <span>${escapeHtml(t("openingDate"))}</span>
         </li>
         <li class="fade-up">
           <strong>+</strong>
-          <span>Будущие модули</span>
+          <span>${escapeHtml(t("futureModules"))}</span>
         </li>
       `;
 
@@ -600,7 +787,7 @@ function renderModuleContent(track, module) {
       practiceList.innerHTML = "";
       outcomesList.innerHTML = "";
 
-      moduleImage.src = "images/logo.png";
+      moduleImage.src = getAssetPath("images/logo.png");
       moduleImage.alt = "BYTEWEBNEST";
 
       updatePremiumSectionsState();
@@ -608,14 +795,14 @@ function renderModuleContent(track, module) {
       return;
     }
 
-    moduleTitle.textContent = "В этом уровне пока нет модулей";
-    moduleGoal.textContent = "Добавь модули в JSON";
-    moduleDescription.textContent = track ? track.description : "Контент появится позже.";
-    moduleSummary.textContent = "Сюда можно будет добавить следующие модули этого уровня.";
+    moduleTitle.textContent = t("noModulesTitle");
+    moduleGoal.textContent = t("addModulesJson");
+    moduleDescription.textContent = track ? track.description : t("contentLater");
+    moduleSummary.textContent = t("futureModulesText");
     finalThought.textContent = "";
-    sectionSubtitle.textContent = "Темы пока не добавлены.";
+    sectionSubtitle.textContent = t("topicsNotAdded");
     trackBadge.textContent = track ? track.title : "BYTEWEBNEST ROADMAP";
-    heroBadge.textContent = track ? track.title : "Модуль";
+    heroBadge.textContent = track ? track.title : "Module";
     heroStats.innerHTML = "";
     topicsContainer.innerHTML = "";
     practiceList.innerHTML = "";
@@ -638,7 +825,7 @@ function renderModuleContent(track, module) {
   finalThought.textContent = practice.finalThought;
   sectionSubtitle.textContent = getLockedTopicsText(module.id, topics.length);
 
-  moduleImage.src = hero.image.src;
+  moduleImage.src = getAssetPath(hero.image.src);
   moduleImage.alt = hero.image.alt;
 
   renderStats(stats);
@@ -695,7 +882,7 @@ function renderTopics(moduleId, topics = []) {
       <div class="topic-card__content">
         <div class="topic-card__head">
           <div>
-            <span class="topic-card__label">Тема ${index + 1}</span>
+            <span class="topic-card__label">${escapeHtml(t("topicLabel", index))}</span>
             <h3 class="topic-card__title">${escapeHtml(topic.title)}</h3>
           </div>
         </div>
@@ -704,14 +891,14 @@ function renderTopics(moduleId, topics = []) {
 
         <div class="topic-layout">
           <div class="info-box">
-            <h4 class="info-box__title">Что изучить</h4>
+            <h4 class="info-box__title">${escapeHtml(t("studyTitle"))}</h4>
             <ul class="token-list">
               ${studyList}
             </ul>
           </div>
 
           <div class="info-box">
-            <h4 class="info-box__title">На что углубить понимание</h4>
+            <h4 class="info-box__title">${escapeHtml(t("deepDiveTitle"))}</h4>
             <ul class="token-list">
               ${deepList}
             </ul>
@@ -727,7 +914,7 @@ function renderTopics(moduleId, topics = []) {
           ? `
             <div class="topic-card__overlay">
               <button class="topic-card__overlay-btn" type="button">
-                Разблокировать тему
+                ${escapeHtml(unlockButton?.textContent?.trim() || "Unlock")}
               </button>
             </div>
           `
@@ -979,7 +1166,7 @@ function handleUnlockSubmit(event) {
 
   if (enteredCode !== validCode) {
     if (unlockMessage) {
-      unlockMessage.textContent = "Неверный код. Попробуй ещё раз.";
+      unlockMessage.textContent = t("unlockError");
       unlockMessage.className = "modal__message is-error";
     }
     unlockCodeInput?.focus();
@@ -990,7 +1177,7 @@ function handleUnlockSubmit(event) {
   localStorage.setItem(STORAGE_KEY, "true");
 
   if (unlockMessage) {
-    unlockMessage.textContent = "Доступ открыт. Весь контент разблокирован.";
+    unlockMessage.textContent = t("unlockSuccess");
     unlockMessage.className = "modal__message is-success";
   }
 
@@ -1012,7 +1199,7 @@ function toggleTopicsPanel() {
   if (!topicNavWrap || !topicsToggle) return;
 
   const isCollapsed = topicNavWrap.classList.toggle("is-collapsed");
-  topicsToggle.textContent = isCollapsed ? "Развернуть" : "Свернуть";
+  topicsToggle.textContent = isCollapsed ? t("expand") : t("collapse");
   localStorage.setItem(TOPICS_COLLAPSED_KEY, String(isCollapsed));
 }
 
@@ -1021,28 +1208,28 @@ function restoreTopicsPanelState() {
 
   const isCollapsed = localStorage.getItem(TOPICS_COLLAPSED_KEY) === "true";
   topicNavWrap.classList.toggle("is-collapsed", isCollapsed);
-  topicsToggle.textContent = isCollapsed ? "Развернуть" : "Свернуть";
+  topicsToggle.textContent = isCollapsed ? t("expand") : t("collapse");
 }
 
 async function loadMapPage() {
   if (mapPageLoaded || !mapPageContent) return;
 
   try {
-    const response = await fetch("./partials/roadmap.html");
+    const response = await fetch(getRoadmapPath());
 
     if (!response.ok) {
-      throw new Error(`Ошибка загрузки карты: ${response.status}`);
+      throw new Error(`${t("mapLoadError")}: ${response.status}`);
     }
 
     const html = await response.text();
     mapPageContent.innerHTML = html;
     mapPageLoaded = true;
   } catch (error) {
-    console.error("Ошибка при загрузке карты:", error);
+    console.error("Roadmap loading error:", error);
 
     mapPageContent.innerHTML = `
       <div class="map-page__loading">
-        Карта обучения сейчас в разработке. Скоро здесь появится визуальная структура всех уровней и модулей.
+        ${escapeHtml(t("mapFallback"))}
       </div>
     `;
   }
@@ -1077,9 +1264,9 @@ function showModuleView() {
 }
 
 function showFallbackError(message = "") {
-  if (moduleTitle) moduleTitle.textContent = "Не удалось загрузить модуль";
-  if (moduleGoal) moduleGoal.textContent = "Проверь файл data/content.json";
-  if (moduleDescription) moduleDescription.textContent = `Причина: ${message}`;
+  if (moduleTitle) moduleTitle.textContent = t("loadModuleFail");
+  if (moduleGoal) moduleGoal.textContent = t("checkContentFile");
+  if (moduleDescription) moduleDescription.textContent = `${t("reasonPrefix")}: ${message}`;
 }
 
 /* ================= PROGRESS SYSTEM ================= */
