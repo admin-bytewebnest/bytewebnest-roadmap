@@ -71,7 +71,7 @@
         "goal": "Understand how JS is connected, how to output data, and what data means in JavaScript.",
         "description": "This is the foundation you cannot move forward without. The first step in JavaScript is understanding how the language gets onto the page, how to see the result of your work, and how data is structured.",
         "image": {
-          "src": "images/module-1.png",
+          "src": "images/module-en-1.png",
           "alt": "JavaScript Fundamentals"
         }
       },
