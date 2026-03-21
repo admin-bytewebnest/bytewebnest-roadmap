@@ -105,6 +105,7 @@
 
   .content-area {
     margin-left: var(--sidebar-width);
+    transition: margin-left 320ms cubic-bezier(.2,.9,.2,1);
   }
 }
 
@@ -150,8 +151,7 @@
   padding: 6px;
   border: 1px solid rgba(137, 160, 199, 0.16);
   border-radius: 999px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.04),
     0 10px 24px rgba(0, 0, 0, 0.16);
@@ -292,7 +292,6 @@
 /* ===== FIX SIDEBAR MOBILE FULL SAFE ===== */
 
 @media (max-width: 980px) {
-
   .sidebar {
     position: fixed;
     inset: 0;
@@ -300,7 +299,14 @@
     pointer-events: none;
   }
 
-  .sidebar.is-open {
+  /* Hide new sidebar by default on mobile to avoid covering content */
+  .bwn-sidebar {
+    display: none;
+    pointer-events: none;
+  }
+
+  /* Показываем pointer-events только если источник открытия — бургер */
+  body.is-sidebar-open[data-sidebar-open-source="burger"] .sidebar {
     pointer-events: auto;
   }
 
@@ -313,7 +319,7 @@
     transition: opacity 0.25s ease;
   }
 
-  .sidebar.is-open .sidebar__overlay {
+  body.is-sidebar-open[data-sidebar-open-source="burger"] .sidebar__overlay {
     opacity: 1;
   }
 
@@ -335,15 +341,14 @@
     overflow-x: hidden;
   }
 
-  .sidebar.is-open .sidebar__panel {
+  body.is-sidebar-open[data-sidebar-open-source="burger"] .sidebar__panel {
     transform: translateX(0);
   }
 
   /* чтобы ничего не вылазило */
-  body.is-sidebar-open {
+  body.is-sidebar-open[data-sidebar-open-source="burger"] {
     overflow: hidden;
   }
-
 }
 
 /* ===== BURGER ICON ===== */
@@ -399,4 +404,272 @@
   .header__menu-btn {
     font-size: 0;
   }
+}
+
+/* ===== NEW BWN SIDEBAR STYLES (isolation from old sidebar) ===== */
+/* Hide new sidebar by default (desktop). It becomes active only on small screens. */
+.bwn-sidebar {
+  display: none;
+}
+
+@media (max-width: 980px) {
+  /* Legacy .sidebar should not capture top z-index on mobile; keep it low to avoid covering header */
+  .sidebar {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 900;
+    pointer-events: none;
+  }
+
+  .bwn-sidebar {
+    /* ensure sidebar covers viewport but sits below header (header z-index:1101) */
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    pointer-events: none;
+  }
+
+  .bwn-sidebar__overlay {
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(7, 17, 31, 0.65);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    z-index: 1000;
+  }
+
+  .bwn-sidebar[data-open="true"] {
+    pointer-events: auto;
+    display: block;
+  }
+
+  .bwn-sidebar[data-open="true"] .bwn-sidebar__overlay {
+    opacity: 1;
+  }
+
+  /* Ensure overlays are hidden by default to avoid accidental page covering */
+  .bwn-sidebar__overlay,
+  .sidebar__overlay {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .bwn-sidebar[data-open="true"] .bwn-sidebar__overlay {
+    display: block !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  body.is-sidebar-open[data-sidebar-open-source="burger"] .sidebar__overlay {
+    display: block !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .bwn-sidebar__panel {
+    position: absolute;
+    top: var(--header-height);
+    right: 0;
+    height: calc(100% - var(--header-height));
+    width: min(90vw, 420px);
+    max-width: 420px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    background: var(--bg);
+    color: var(--text);
+    z-index: 1001;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .bwn-sidebar[data-open="true"] .bwn-sidebar__panel {
+    transform: translateX(0);
+  }
+
+  body.bwn-sidebar-open {
+    overflow: hidden;
+  }
+}
+
+/* Desktop: show bwn-sidebar as the primary left menu (visual parity with legacy .sidebar) */
+@media (min-width: 981px) {
+  .bwn-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: var(--sidebar-width);
+    z-index: 900;
+    pointer-events: auto;
+    display: block;
+  }
+
+  .bwn-sidebar__overlay {
+    display: none;
+  }
+
+  .bwn-sidebar__panel {
+    position: relative;
+    transform: none;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    box-shadow: none;
+    background: var(--bg);
+    color: var(--text);
+    overflow-y: auto;
+  }
+
+  .content-area {
+    margin-left: var(--sidebar-width);
+  }
+}
+
+/* Collapsed desktop sidebar: hide sidebar visually and expand content */
+/* Desktop collapse/expand integration removed — using the default bwn-sidebar behavior */
+
+/* Polished visual styles for desktop bwn-sidebar and controls */
+.bwn-sidebar {
+  background: linear-gradient(180deg, rgba(12, 24, 36, 0.98), rgba(6, 12, 20, 0.95));
+  border-right: 1px solid rgba(255,255,255,0.03);
+  backdrop-filter: blur(6px);
+}
+
+.bwn-sidebar__panel {
+  padding: 18px 14px;
+  box-sizing: border-box;
+}
+
+.bwn-sidebar__brand-text {
+  display: block;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+}
+.bwn-sidebar__brand-subtext {
+  display: block;
+  color: rgba(255,255,255,0.75);
+  font-size: 12px;
+}
+
+.bwn-sidebar__close {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #fff;
+  border-radius: 10px;
+  font-size: 20px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+.bwn-sidebar__close:hover { transform: scale(1.04); background: rgba(255,255,255,0.03); }
+
+.bwn-sidebar-block__label {
+  color: rgba(255,255,255,0.85);
+  font-weight: 700;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.track-link, .module-link, .topic-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border-radius: 12px;
+  padding: 10px 12px;
+  color: rgba(255,255,255,0.94);
+  transition: background 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease;
+}
+.track-link:hover, .module-link:hover, .topic-link:hover {
+  background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(3,8,15,0.5);
+}
+.track-link.is-active, .module-link.is-active, .topic-link.is-active {
+  background: linear-gradient(90deg, rgba(79,140,255,0.12), rgba(80,200,255,0.06));
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(36,87,184,0.12);
+}
+
+/* Collapse/expand toggle button (topics) */
+.bwn-sidebar-block__toggle {
+  background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.14s ease, background 0.14s ease;
+}
+.bwn-sidebar-block__toggle:hover { transform: translateY(-2px); background: rgba(255,255,255,0.04); }
+
+/* Burger icon — support both old and new toggle ids for active animation */
+#sidebarOpenBtn.is-active .burger-icon span:nth-child(1),
+#bwn_sidebar_toggle.is-active .burger-icon span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 7px;
+}
+
+#sidebarOpenBtn.is-active .burger-icon span:nth-child(2),
+#bwn_sidebar_toggle.is-active .burger-icon span:nth-child(2) {
+  opacity: 0;
+}
+
+#sidebarOpenBtn.is-active .burger-icon span:nth-child(3),
+#bwn_sidebar_toggle.is-active .burger-icon span:nth-child(3) {
+  transform: rotate(-45deg);
+  bottom: 7px;
+}
+
+/* Footer polishing */
+.footer__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.footer__brand { display:flex; align-items:center; gap:10px; }
+.footer__logo-text { font-weight:800; color: #fff; }
+.footer__info { display:flex; align-items:center; gap:14px; color: rgba(255,255,255,0.72); }
+
+/* Premium CTA — dark tone and subtle animation */
+.premium-cta__box {
+  background: linear-gradient(180deg, rgba(12,18,28,0.9), rgba(6,10,18,0.85));
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 12px 40px rgba(3,6,12,0.6);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.premium-cta__box:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(3,6,12,0.7); }
+.premium-cta__price { background: linear-gradient(90deg,#4F8CFF,#50C8FF); color:#fff; padding:8px 12px; border-radius:8px; font-weight:800; }
+.btn--primary { transition: transform 0.12s ease, box-shadow 0.12s ease; }
+.btn--primary:hover { transform: translateY(-3px); box-shadow: 0 8px 26px rgba(36,87,184,0.14); }
+
+/* Make sure topic-nav visible area keeps consistent spacing */
+.topic-nav { padding-bottom: 24px; }
+
+
+/* Small visual parity: brand and close */
+.bwn-sidebar__top {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bwn-sidebar__brand-text {
+  font-weight: 700;
+}
+.bwn-sidebar__close {
+  width: 42px;
+  height: 42px;
 }

@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>BYTEWEBNEST — Developer Roadmap</title>
 
-    <meta name="description" content="BYTEWEBNEST is a modern developer roadmap with levels, modules, topics, and an access unlock system." />
+    <meta name="description"
+        content="BYTEWEBNEST is a modern developer roadmap with levels, modules, topics, and an access unlock system." />
     <meta name="robots" content="index, follow" />
     <meta name="keywords"
         content="web development roadmap, frontend roadmap, javascript course, html css javascript learning, programming course, bytewebnest" />
@@ -20,7 +22,8 @@
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content="BYTEWEBNEST — Developer Roadmap" />
-    <meta property="og:description" content="An interactive roadmap for learning web development. Study topics by module, reinforce them with practice, and grow systematically from Starter to Senior." />
+    <meta property="og:description"
+        content="An interactive roadmap for learning web development. Study topics by module, reinforce them with practice, and grow systematically from Starter to Senior." />
     <meta property="og:url" content="https://admin-bytewebnest.github.io/bytewebnest-roadmap/" />
     <meta property="og:image" content="https://admin-bytewebnest.github.io/bytewebnest-roadmap/images/banner-en.png" />
     <meta property="og:image:width" content="1200" />
@@ -29,7 +32,8 @@
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="BYTEWEBNEST — Developer Roadmap" />
-    <meta name="twitter:description" content="A structured web development learning system: modules, topics, practice, and a clear growth roadmap." />
+    <meta name="twitter:description"
+        content="A structured web development learning system: modules, topics, practice, and a clear growth roadmap." />
     <meta name="twitter:image" content="https://admin-bytewebnest.github.io/bytewebnest-roadmap/images/banner-en.png" />
 
     <meta name="google-site-verification" content="7pROx1uurNSbZeshE8SLKOdenUpNWATXKgvbWa6KHbE" />
@@ -63,65 +67,67 @@
         <div class="bg-blur bg-blur--bottom"></div>
 
         <header class="header">
-    <div class="container header__container">
-        <a href="./index.html" class="logo" aria-label="BYTEWEBNEST">
-            <span class="logo__mark"></span>
-            <span class="logo__text">BYTEWEBNEST</span>
-        </a>
+            <div class="container header__container">
+                <a href="./index.html" class="logo" aria-label="BYTEWEBNEST">
+                    <span class="logo__mark"></span>
+                    <span class="logo__text">BYTEWEBNEST</span>
+                </a>
 
-        <nav class="header__nav">
-            <a href="#overview" class="header__link" id="moduleViewLink">Overview</a>
-            <a href="#map" class="header__link" id="mapViewLink">Map</a>
-            <a href="#topics" class="header__link" id="topicsViewLink">Topics</a>
-            <a href="#practice" class="header__link" id="practiceViewLink">Practice</a>
-        </nav>
-        <div class="lang-switcher" aria-label="Language switcher">
-            <a href="./index.html" class="lang-switcher__link lang-switcher__link--active" lang="en">EN</a>
-            <a href="./uk/index.html" class="lang-switcher__link" lang="uk">UA</a>
-            <a href="./ru/index.html" class="lang-switcher__link" lang="ru">RU</a>
-        </div>
+                <nav class="header__nav">
+                    <a href="#overview" class="header__link" id="moduleViewLink">Overview</a>
+                    <a href="#map" class="header__link" id="mapViewLink">Map</a>
+                    <a href="#topics" class="header__link" id="topicsViewLink">Topics</a>
+                    <a href="#practice" class="header__link" id="practiceViewLink">Practice</a>
+                </nav>
+                <div class="lang-switcher" aria-label="Language switcher">
+                    <a href="./index.html" class="lang-switcher__link lang-switcher__link--active" lang="en">EN</a>
+                    <a href="./uk/index.html" class="lang-switcher__link" lang="uk">UA</a>
+                    <a href="./ru/index.html" class="lang-switcher__link" lang="ru">RU</a>
+                </div>
 
-        <button class="header__menu-btn" id="sidebarOpenBtn" type="button" aria-label="Open program">
-            Program
-        </button>
-    </div>
-</header>
+                <!-- New sidebar toggle (separate component) -->
+                <button class="header__menu-btn" id="bwn_sidebar_toggle" type="button" aria-label="Open program">
+                    Program
+                </button>
+            </div>
+        </header>
 
         <main class="layout">
-            <aside class="sidebar" id="sidebar">
-                <div class="sidebar__overlay" id="sidebarOverlay"></div>
+            <!-- Rebuilt sidebar component (new ids/classes) -->
+            <aside class="bwn-sidebar" id="bwn_sidebar">
+                <div class="bwn-sidebar__overlay" id="bwn_sidebar_overlay"></div>
 
-                <div class="sidebar__panel">
-                    <div class="sidebar__top">
-                        <div class="sidebar__brand">
-                            <span class="sidebar__brand-dot"></span>
+                <div class="bwn-sidebar__panel" id="bwn_sidebar_panel">
+                    <div class="bwn-sidebar__top">
+                        <div class="bwn-sidebar__brand">
+                            <span class="bwn-sidebar__brand-dot"></span>
                             <div>
-                                <span class="sidebar__brand-text">BYTEWEBNEST</span>
-                                <span class="sidebar__brand-subtext">Learning program</span>
+                                <span class="bwn-sidebar__brand-text">BYTEWEBNEST</span>
+                                <span class="bwn-sidebar__brand-subtext">Learning program</span>
                             </div>
                         </div>
 
-                        <button class="sidebar__close" id="sidebarCloseBtn" type="button" aria-label="Close menu">
+                        <button class="bwn-sidebar__close" id="bwn_sidebar_close" type="button" aria-label="Close menu">
                             ×
                         </button>
                     </div>
 
-                    <div class="sidebar__inner">
-                        <div class="sidebar-block sidebar-block--tracks">
-                            <p class="sidebar-block__label">Levels</p>
+                    <div class="bwn-sidebar__inner">
+                        <div class="bwn-sidebar-block bwn-sidebar-block--tracks">
+                            <p class="bwn-sidebar-block__label">Levels</p>
                             <div class="track-nav" id="trackNav"></div>
                         </div>
 
-                        <div class="sidebar-block sidebar-block--modules">
-                            <p class="sidebar-block__label">Level modules</p>
+                        <div class="bwn-sidebar-block bwn-sidebar-block--modules">
+                            <p class="bwn-sidebar-block__label">Level modules</p>
                             <div class="module-nav" id="moduleNav"></div>
-                            <div class="sidebar-empty" id="moduleEmptyState"></div>
+                            <div class="bwn-sidebar-empty" id="moduleEmptyState"></div>
                         </div>
 
-                        <div class="sidebar-block sidebar-block--topics">
-                            <div class="sidebar-block__head">
-                                <p class="sidebar-block__label">Module contents</p>
-                                <button class="sidebar-block__toggle" id="topicsToggle" type="button">
+                        <div class="bwn-sidebar-block bwn-sidebar-block--topics">
+                            <div class="bwn-sidebar-block__head">
+                                <p class="bwn-sidebar-block__label">Module contents</p>
+                                <button class="bwn-sidebar-block__toggle" id="topicsToggle" type="button">
                                     Collapse
                                 </button>
                             </div>
@@ -146,7 +152,8 @@
                                 </h1>
 
                                 <p class="landing__text">
-                                    A structured learning system that helps you study web development step by step: from fundamental topics to confident practice and growth across levels.
+                                    A structured learning system that helps you study web development step by step: from
+                                    fundamental topics to confident practice and growth across levels.
                                 </p>
 
                                 <div class="landing__actions">
@@ -186,7 +193,8 @@
                             <p class="section-label">What’s inside</p>
                             <h2 class="section-title">Not just articles, but a learning system</h2>
                             <p class="section-subtitle">
-                                BYTEWEBNEST helps you study development without chaos: consistently, with practice, and with a clear growth logic.
+                                BYTEWEBNEST helps you study development without chaos: consistently, with practice, and
+                                with a clear growth logic.
                             </p>
                         </div>
 
@@ -194,7 +202,8 @@
                             <article class="benefit-card fade-up">
                                 <h3 class="benefit-card__title">Step-by-step structure</h3>
                                 <p class="benefit-card__text">
-                                    Topics are arranged by difficulty level so you always understand what to study now and what your next step will be.
+                                    Topics are arranged by difficulty level so you always understand what to study now
+                                    and what your next step will be.
                                 </p>
                             </article>
 
@@ -208,14 +217,16 @@
                             <article class="benefit-card fade-up">
                                 <h3 class="benefit-card__title">Roadmap for</h3>
                                 <p class="benefit-card__text">
-                                    From Starter to Senior, you see not only the current module but the entire path of a developer’s growth.
+                                    From Starter to Senior, you see not only the current module but the entire path of a
+                                    developer’s growth.
                                 </p>
                             </article>
 
                             <article class="benefit-card fade-up">
                                 <h3 class="benefit-card__title">Future updates</h3>
                                 <p class="benefit-card__text">
-                                    After unlocking access, you get not only the current content but also new modules that will be added later.
+                                    After unlocking access, you get not only the current content but also new modules
+                                    that will be added later.
                                 </p>
                             </article>
                         </div>
@@ -234,7 +245,8 @@
                                 <span class="level-card__badge">Starter</span>
                                 <h3 class="level-card__title">Getting started in development</h3>
                                 <p class="level-card__text">
-                                    JavaScript fundamentals, logic, loops, functions, arrays, objects, and first steps in the DOM.
+                                    JavaScript fundamentals, logic, loops, functions, arrays, objects, and first steps
+                                    in the DOM.
                                 </p>
                             </article>
 
@@ -242,7 +254,8 @@
                                 <span class="level-card__badge">Junior</span>
                                 <h3 class="level-card__title">Confident foundation</h3>
                                 <p class="level-card__text">
-                                    Applied logic, interfaces, data, APIs, and the transition from training examples to real tasks.
+                                    Applied logic, interfaces, data, APIs, and the transition from training examples to
+                                    real tasks.
                                 </p>
                             </article>
 
@@ -250,7 +263,8 @@
                                 <span class="level-card__badge">Middle</span>
                                 <h3 class="level-card__title">Applied development</h3>
                                 <p class="level-card__text">
-                                    Architecture, asynchrony, application structure, and a mature approach to project work.
+                                    Architecture, asynchrony, application structure, and a mature approach to project
+                                    work.
                                 </p>
                             </article>
 
@@ -272,7 +286,8 @@
                                 <p class="section-label">Full access</p>
                                 <h2 class="section-title">Unlock the entire course and future updates</h2>
                                 <p class="premium-cta__text">
-                                    Full access unlocks all modules, hidden topics, practice, final outcomes, and future course sections.
+                                    Full access unlocks all modules, hidden topics, practice, final outcomes, and future
+                                    course sections.
                                 </p>
 
                                 <ul class="premium-cta__list">
@@ -286,8 +301,10 @@
                             <div class="premium-cta__side">
                                 <div class="premium-cta__price">10$</div>
                                 <button class="btn btn--primary" id="buyAccessBtn" type="button">Get access</button>
-                                <p class="premium-cta__note">Online payments via bank cards and cryptocurrency will be available soon.</p>
-                                <p class="premium-cta__subnote">We are currently preparing the integration for quick online payments across Ukraine and Europe.</p>
+                                <p class="premium-cta__note">Online payments via bank cards and cryptocurrency will be
+                                    available soon.</p>
+                                <p class="premium-cta__subnote">We are currently preparing the integration for quick
+                                    online payments across Ukraine and Europe.</p>
                                 <a href="https://t.me/bytewebnest" target="_blank" rel="noopener noreferrer"
                                     class="btn btn--secondary premium-cta__telegram-btn">
                                     Contact via Telegram
@@ -303,13 +320,15 @@
                             <p class="section-label">Learning map</p>
                             <h2 class="section-title">Course development tree</h2>
                             <p class="section-subtitle">
-                                A convenient visual map of learning branches will be displayed here. This section is currently in development.
+                                A convenient visual map of learning branches will be displayed here. This section is
+                                currently in development.
                             </p>
                         </div>
 
                         <div class="map-page__content final-box fade-up" id="mapPageContent">
                             <div class="map-page__loading">
-                                The learning map is currently in development. A visual structure of all levels and modules will appear here soon.
+                                The learning map is currently in development. A visual structure of all levels and
+                                modules will appear here soon.
                             </div>
                         </div>
                     </div>
@@ -360,7 +379,8 @@
                             <div class="panel panel--intro">
                                 <div class="panel__left">
                                     <p class="section-label">About the module</p>
-                                    <h2 class="section-title">What you should understand after completing this block</h2>
+                                    <h2 class="section-title">What you should understand after completing this block
+                                    </h2>
                                 </div>
 
                                 <div class="panel__right">
@@ -464,7 +484,8 @@
                                 <div class="lockable-card__content">
                                     <div class="final-box__content">
                                         <p class="section-label">Final goal</p>
-                                        <h2 class="section-title section-title--sm">After this module, you should confidently understand</h2>
+                                        <h2 class="section-title section-title--sm">After this module, you should
+                                            confidently understand</h2>
                                         <ul class="check-list" id="outcomesList"></ul>
                                     </div>
                                 </div>
@@ -500,12 +521,15 @@
             <h2 class="modal__title" id="unlockModalTitle">Unlock all modules</h2>
 
             <p class="modal__text">
-                We closed part of the content to support the authors who collect the material, arrange it in the right chronology, and make learning convenient — from topic to topic, without confusion or chaos.
+                We closed part of the content to support the authors who collect the material, arrange it in the right
+                chronology, and make learning convenient — from topic to topic, without confusion or chaos.
             </p>
 
             <div class="modal__promo">
                 <p class="modal__promo-text">
-                    In each module, information is structured sequentially: first the foundation, then the important accents, and finally practice for reinforcement. Full access unlocks not only all current materials, but also future updates.
+                    In each module, information is structured sequentially: first the foundation, then the important
+                    accents, and finally practice for reinforcement. Full access unlocks not only all current materials,
+                    but also future updates.
                 </p>
 
                 <div class="modal__price-box">
@@ -523,7 +547,8 @@
                 <div class="modal__payment-status">
                     <p class="modal__payment-title">Online payment is being connected</p>
                     <p class="modal__payment-text">
-                        Card and crypto payments will be available soon. Right now you can request access manually via Telegram while the payment gateway is being integrated.
+                        Card and crypto payments will be available soon. Right now you can request access manually via
+                        Telegram while the payment gateway is being integrated.
                     </p>
                 </div>
 

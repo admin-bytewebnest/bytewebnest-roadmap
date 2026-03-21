@@ -32,9 +32,7 @@ const unlockCodeInput = document.getElementById("unlockCodeInput")
 const unlockMessage = document.getElementById("unlockMessage")
 const modalCloseBtn = document.getElementById("modalCloseBtn")
 
-const sidebarOpenBtn = document.getElementById("sidebarOpenBtn")
-const sidebarCloseBtn = document.getElementById("sidebarCloseBtn")
-const sidebarOverlay = document.getElementById("sidebarOverlay")
+// Old sidebar elements removed — new isolated sidebar uses `bwn_` ids.
 
 const mapPage = document.getElementById("mapPage")
 const modulePage = document.getElementById("modulePage")
@@ -211,7 +209,31 @@ const UI = {
 }
 
 let isScrolling = false
-let scrollTimeout;
+let scrollTimeout
+let isTouchMoving = false
+document.addEventListener("touchmove", () => {
+  isTouchMoving = true
+})
+document.addEventListener("touchend", () => {
+  // небольшой таймаут, чтобы избежать мгновенного сброса до следующего click
+  setTimeout(() => {
+    isTouchMoving = false
+  }, 50)
+})
+let touchStartY = 0
+let touchMoved = false
+document.addEventListener("touchstart", e => {
+  touchStartY = e.touches[0].clientY
+  touchMoved = false
+})
+
+document.addEventListener("touchmove", e => {
+  const currentY = e.touches[0].clientY
+
+  if (Math.abs(currentY - touchStartY) > 10) {
+    touchMoved = true
+  }
+})
 
 window.addEventListener("scroll", () => {
   isScrolling = true
@@ -306,6 +328,8 @@ async function loadContent() {
     restoreTopicsPanelState()
     bindEvents()
     renderApp()
+    
+    // No persisted desktop collapsed state — keep sidebar default behavior
 
     if (window.location.hash === "#map") {
       await showMapView()
@@ -334,8 +358,11 @@ function bindEvents() {
       closeUnlockModal()
     }
 
-    if (event.key === "Escape" && document.body.classList.contains("is-sidebar-open")) {
-      closeSidebar()
+    if (event.key === "Escape" && document.body.classList.contains("bwn-sidebar-open")) {
+      // close new sidebar if open
+      const sb = document.getElementById("bwn_sidebar")
+      if (sb) sb.removeAttribute("data-open")
+      document.body.classList.remove("bwn-sidebar-open")
     }
   })
 
@@ -345,20 +372,7 @@ function bindEvents() {
     button.addEventListener("click", openUnlockModal)
   })
 
-sidebarOpenBtn?.addEventListener("click", function (e) {
-  e.stopPropagation()
-
-  // ❗ игнор клика после скролла
-  if (isScrolling) return
-
-  if (document.body.classList.contains("is-sidebar-open")) {
-    closeSidebar()
-  } else {
-    openSidebar()
-  }
-})
-  sidebarCloseBtn?.addEventListener("click", closeSidebar)
-  sidebarOverlay?.addEventListener("click", closeSidebar)
+  // Old sidebar event bindings removed — new component `bwn_sidebar` handles its own events.
   buyAccessBtn?.addEventListener("click", openUnlockModal)
 
   topicsToggle?.addEventListener("click", toggleTopicsPanel)
@@ -722,11 +736,13 @@ function renderModulesForTrack(trackId, activeModuleId) {
       currentModuleId = module.id
       window.location.hash = `module-${module.id}`
 
+      // wait slightly longer to account for desktop collapse animation
+      const delay = window.innerWidth >= 981 ? 380 : 80
       setTimeout(() => {
         showModuleView()
         renderApp()
         scrollPageTop()
-      }, 50)
+      }, delay)
     })
 
     moduleNav.appendChild(button)
@@ -762,17 +778,19 @@ function renderTopicNavigation(module) {
       element.addEventListener("click", event => {
         event.preventDefault()
 
+        const targetId = `topic-${index + 1}`
+        const target = document.getElementById(targetId)
+        if (!target) return
+
         closeSidebar()
 
+        // wait for sidebar collapse/close animation to finish
+        const delay = window.innerWidth >= 981 ? 380 : 360
         setTimeout(() => {
-          const target = document.getElementById(`topic-${index + 1}`)
-          if (!target) return
-
-          target.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          })
-        }, 280)
+          const t = document.getElementById(targetId)
+          if (!t) return
+          t.scrollIntoView({ behavior: "smooth", block: "start" })
+        }, delay)
       })
     }
 
@@ -1134,6 +1152,12 @@ function initTopicSpy() {
         })
 
         keepActiveTopicVisible(id)
+        // Если новый сайдбар по какой-то причине открылся при прокрутке — закрываем его.
+        if (document.body.classList.contains("bwn-sidebar-open")) {
+          const sb = document.getElementById("bwn_sidebar")
+          if (sb) sb.removeAttribute("data-open")
+          document.body.classList.remove("bwn-sidebar-open")
+        }
       })
     },
     {
@@ -1213,11 +1237,21 @@ function handleUnlockSubmit(event) {
 }
 
 function openSidebar() {
-  document.body.classList.add("is-sidebar-open")
+  const sb = document.getElementById("bwn_sidebar")
+  if (sb) {
+    sb.setAttribute("data-open", "true")
+    document.body.classList.add("bwn-sidebar-open")
+    const toggleBtn = document.getElementById("bwn_sidebar_toggle") || document.getElementById("sidebarOpenBtn")
+    if (toggleBtn) toggleBtn.classList.add("is-active")
+  }
 }
 
 function closeSidebar() {
-  document.body.classList.remove("is-sidebar-open")
+  const sb = document.getElementById("bwn_sidebar")
+  if (sb) sb.removeAttribute("data-open")
+  document.body.classList.remove("bwn-sidebar-open")
+  const toggleBtn = document.getElementById("bwn_sidebar_toggle") || document.getElementById("sidebarOpenBtn")
+  if (toggleBtn) toggleBtn.classList.remove("is-active")
 }
 
 function toggleTopicsPanel() {
@@ -1407,15 +1441,20 @@ function hideCompletionScreen() {
 
 loadContent()
 
+/* ===== DESKTOP EXPAND HANDLE (created dynamically) ===== */
+// (Desktop expand handle removed — using default bwn sidebar behavior)
+
 /* ===== BURGER INIT ===== */
 
 function initBurgerIcon() {
-  const btn = document.getElementById("sidebarOpenBtn")
+  // Support both old and new toggle button ids
+  const btn = document.getElementById("sidebarOpenBtn") || document.getElementById("bwn_sidebar_toggle")
   if (!btn) return
 
   if (btn.querySelector(".burger-icon")) return
 
-  btn.textContent = ""
+  // ❗ не удаляем текст полностью, а скрываем
+  btn.dataset.originalText = btn.textContent
 
   const burger = document.createElement("span")
   burger.className = "burger-icon"
@@ -1426,42 +1465,69 @@ function initBurgerIcon() {
     <span></span>
   `
 
+  btn.innerHTML = ""
   btn.appendChild(burger)
 }
 
 /* ===== STATE SYNC (АНИМАЦИЯ БУРГЕРА) ===== */
 
-const originalOpenSidebar = openSidebar
-const originalCloseSidebar = closeSidebar
+// Old openSidebar/closeSidebar wrappers removed. Use new `bwn_sidebar` component.
 
-openSidebar = function () {
-  originalOpenSidebar()
-  const btn = document.getElementById("sidebarOpenBtn")
-  btn?.classList.add("is-active")
-}
+/* old safe-click-outside for previous sidebar removed; new component handles its own outside clicks */
 
-closeSidebar = function () {
-  originalCloseSidebar()
-  const btn = document.getElementById("sidebarOpenBtn")
-  btn?.classList.remove("is-active")
-}
+/* ===== NEW BWN SIDEBAR COMPONENT (isolated) ===== */
+;(function () {
+  const toggle = document.getElementById("bwn_sidebar_toggle")
+  const sidebar = document.getElementById("bwn_sidebar")
+  const panel = document.getElementById("bwn_sidebar_panel")
+  const overlay = document.getElementById("bwn_sidebar_overlay")
+  const closeBtn = document.getElementById("bwn_sidebar_close")
 
-/* ===== SAFE CLICK OUTSIDE ===== */
+  if (!toggle || !sidebar || !panel) return
 
-document.addEventListener("click", event => {
-  // ❗ защита от странных мобильных/фантомных кликов
-  if (!event.isTrusted) return
+  let opened = false
+  let touchMovedLocal = false
 
-  const sidebarPanel = document.querySelector(".sidebar__panel")
-  if (!sidebarPanel) return
+  document.addEventListener("touchmove", () => {
+    touchMovedLocal = true
+  })
+  document.addEventListener("touchend", () => {
+    setTimeout(() => (touchMovedLocal = false), 50)
+  })
 
-  // игнор клика по бургеру
-  if (event.target.closest("#sidebarOpenBtn")) return
-
-  if (
-    document.body.classList.contains("is-sidebar-open") &&
-    !sidebarPanel.contains(event.target)
-  ) {
-    closeSidebar()
+  function openBwnSidebar() {
+    if (opened) return
+    opened = true
+    sidebar.setAttribute("data-open", "true")
+    document.body.classList.add("bwn-sidebar-open")
+    const toggleBtn = document.getElementById("bwn_sidebar_toggle") || document.getElementById("sidebarOpenBtn")
+    if (toggleBtn) toggleBtn.classList.add("is-active")
   }
-})
+
+  function closeBwnSidebar() {
+    if (!opened) return
+    opened = false
+    sidebar.removeAttribute("data-open")
+    document.body.classList.remove("bwn-sidebar-open")
+    const toggleBtn = document.getElementById("bwn_sidebar_toggle") || document.getElementById("sidebarOpenBtn")
+    if (toggleBtn) toggleBtn.classList.remove("is-active")
+  }
+
+  toggle.addEventListener("click", e => {
+    e.stopPropagation()
+    if (touchMovedLocal) {
+      touchMovedLocal = false
+      return
+    }
+    if (opened) closeBwnSidebar()
+    else openBwnSidebar()
+  })
+
+  overlay?.addEventListener("click", () => closeBwnSidebar())
+  closeBtn?.addEventListener("click", () => closeBwnSidebar())
+
+  // close on Escape
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && opened) closeBwnSidebar()
+  })
+})()
