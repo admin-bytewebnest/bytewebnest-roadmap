@@ -392,18 +392,6 @@ function bindEvents() {
     openLastModuleSection("practice")
   })
 
-  document.addEventListener("click", event => {
-    const sidebarPanel = document.querySelector(".sidebar__panel")
-    if (!sidebarPanel) return
-
-    // ❗ игнор клика по кнопке
-    if (event.target.closest("#sidebarOpenBtn")) return
-
-    if (document.body.classList.contains("is-sidebar-open") && !sidebarPanel.contains(event.target)) {
-      closeSidebar()
-    }
-  })
-
   window.addEventListener("hashchange", handleHashChange)
 }
 
