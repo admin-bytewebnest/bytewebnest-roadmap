@@ -1446,21 +1446,3 @@ document.addEventListener("click", event => {
     closeSidebar()
   }
 })
-
-/* ===== MOBILE GHOST CLICK FIX ===== */
-
-let lastTouchTime = 0
-
-document.addEventListener("touchstart", () => {
-  lastTouchTime = Date.now()
-})
-
-document.addEventListener(
-  "click",
-  e => {
-    if (Date.now() - lastTouchTime < 300) {
-      e.stopPropagation()
-    }
-  },
-  true,
-)
