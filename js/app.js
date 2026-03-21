@@ -210,6 +210,18 @@ const UI = {
   },
 }
 
+let isScrolling = false
+let scrollTimeout;
+
+window.addEventListener("scroll", () => {
+  isScrolling = true
+  clearTimeout(scrollTimeout)
+
+  scrollTimeout = setTimeout(() => {
+    isScrolling = false
+  }, 150)
+})
+
 function t(key, ...args) {
   const dict = UI[CURRENT_LANG] || UI.en
   const value = dict[key] ?? UI.en[key]
@@ -333,15 +345,18 @@ function bindEvents() {
     button.addEventListener("click", openUnlockModal)
   })
 
-  sidebarOpenBtn?.addEventListener("click", function (e) {
-    e.stopPropagation()
+sidebarOpenBtn?.addEventListener("click", function (e) {
+  e.stopPropagation()
 
-    if (document.body.classList.contains("is-sidebar-open")) {
-      closeSidebar()
-    } else {
-      openSidebar()
-    }
-  })
+  // ❗ игнор клика после скролла
+  if (isScrolling) return
+
+  if (document.body.classList.contains("is-sidebar-open")) {
+    closeSidebar()
+  } else {
+    openSidebar()
+  }
+})
   sidebarCloseBtn?.addEventListener("click", closeSidebar)
   sidebarOverlay?.addEventListener("click", closeSidebar)
   buyAccessBtn?.addEventListener("click", openUnlockModal)
