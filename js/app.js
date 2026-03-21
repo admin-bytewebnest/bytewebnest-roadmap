@@ -393,6 +393,7 @@ function bindEvents() {
   })
 
   window.addEventListener("hashchange", handleHashChange)
+  initBurgerIcon()
 }
 
 async function handleHashChange() {
@@ -1397,10 +1398,8 @@ function initBurgerIcon() {
   const btn = document.getElementById("sidebarOpenBtn")
   if (!btn) return
 
-  // если уже есть — не дублируем
   if (btn.querySelector(".burger-icon")) return
 
-  // очищаем текст (только для мобилки будет видно иконку)
   btn.textContent = ""
 
   const burger = document.createElement("span")
@@ -1414,8 +1413,6 @@ function initBurgerIcon() {
 
   btn.appendChild(burger)
 }
-
-initBurgerIcon()
 
 /* ===== STATE SYNC (АНИМАЦИЯ БУРГЕРА) ===== */
 
@@ -1434,15 +1431,22 @@ closeSidebar = function () {
   btn?.classList.remove("is-active")
 }
 
-/* ===== FIX CLICK OUTSIDE ===== */
+/* ===== SAFE CLICK OUTSIDE ===== */
 
 document.addEventListener("click", event => {
+  // ❗ защита от странных мобильных/фантомных кликов
+  if (!event.isTrusted) return
+
   const sidebarPanel = document.querySelector(".sidebar__panel")
   if (!sidebarPanel) return
 
+  // игнор клика по бургеру
   if (event.target.closest("#sidebarOpenBtn")) return
 
-  if (document.body.classList.contains("is-sidebar-open") && !sidebarPanel.contains(event.target)) {
+  if (
+    document.body.classList.contains("is-sidebar-open") &&
+    !sidebarPanel.contains(event.target)
+  ) {
     closeSidebar()
   }
 })
