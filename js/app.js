@@ -328,7 +328,15 @@ function bindEvents() {
     button.addEventListener("click", openUnlockModal);
   });
 
-  sidebarOpenBtn?.addEventListener("click", openSidebar);
+  sidebarOpenBtn?.addEventListener("click", function (e) {
+  e.stopPropagation();
+
+  if (document.body.classList.contains("is-sidebar-open")) {
+    closeSidebar();
+  } else {
+    openSidebar();
+  }
+});
   sidebarCloseBtn?.addEventListener("click", closeSidebar);
   sidebarOverlay?.addEventListener("click", closeSidebar);
   buyAccessBtn?.addEventListener("click", openUnlockModal);
@@ -380,17 +388,19 @@ function bindEvents() {
   });
 
   document.addEventListener("click", (event) => {
-    const sidebarPanel = document.querySelector(".sidebar__panel");
-    if (!sidebarPanel) return;
+  const sidebarPanel = document.querySelector(".sidebar__panel");
+  if (!sidebarPanel) return;
 
-    if (
-      document.body.classList.contains("is-sidebar-open") &&
-      !sidebarPanel.contains(event.target) &&
-      !event.target.closest("#sidebarOpenBtn")
-    ) {
-      closeSidebar();
-    }
-  });
+  // ❗ игнор клика по кнопке
+  if (event.target.closest("#sidebarOpenBtn")) return;
+
+  if (
+    document.body.classList.contains("is-sidebar-open") &&
+    !sidebarPanel.contains(event.target)
+  ) {
+    closeSidebar();
+  }
+});
 
   window.addEventListener("hashchange", handleHashChange);
 }
@@ -1442,3 +1452,15 @@ closeSidebar = function () {
   const btn = document.getElementById("sidebarOpenBtn");
   btn?.classList.remove("is-active");
 };
+// ===== MOBILE FIX (ghost click) =====
+let lastTouchTime = 0;
+
+document.addEventListener("touchstart", () => {
+  lastTouchTime = Date.now();
+});
+
+document.addEventListener("click", (e) => {
+  if (Date.now() - lastTouchTime < 300) {
+    e.stopPropagation();
+  }
+}, true);
