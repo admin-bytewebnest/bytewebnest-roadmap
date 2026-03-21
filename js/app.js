@@ -1436,7 +1436,47 @@ function initBurgerIcon() {
 
 initBurgerIcon();
 
-/* ===== BURGER STATE SYNC ===== */
+/* ===== BURGER INIT ===== */
+
+function initBurgerIcon() {
+  const btn = document.getElementById("sidebarOpenBtn");
+  if (!btn) return;
+
+  // если уже есть — не дублируем
+  if (btn.querySelector(".burger-icon")) return;
+
+  // очищаем текст (только для мобилки будет видно иконку)
+  btn.textContent = "";
+
+  const burger = document.createElement("span");
+  burger.className = "burger-icon";
+
+  burger.innerHTML = `
+    <span></span>
+    <span></span>
+    <span></span>
+  `;
+
+  btn.appendChild(burger);
+}
+
+initBurgerIcon();
+
+/* ===== TOGGLE FIX ===== */
+
+const sidebarBtn = document.getElementById("sidebarOpenBtn");
+
+sidebarBtn?.addEventListener("click", function (e) {
+  e.stopPropagation();
+
+  if (document.body.classList.contains("is-sidebar-open")) {
+    closeSidebar();
+  } else {
+    openSidebar();
+  }
+});
+
+/* ===== STATE SYNC (АНИМАЦИЯ БУРГЕРА) ===== */
 
 const originalOpenSidebar = openSidebar;
 const originalCloseSidebar = closeSidebar;
@@ -1452,15 +1492,37 @@ closeSidebar = function () {
   const btn = document.getElementById("sidebarOpenBtn");
   btn?.classList.remove("is-active");
 };
-// ===== MOBILE FIX (ghost click) =====
+
+/* ===== FIX CLICK OUTSIDE ===== */
+
+document.addEventListener("click", (event) => {
+  const sidebarPanel = document.querySelector(".sidebar__panel");
+  if (!sidebarPanel) return;
+
+  if (event.target.closest("#sidebarOpenBtn")) return;
+
+  if (
+    document.body.classList.contains("is-sidebar-open") &&
+    !sidebarPanel.contains(event.target)
+  ) {
+    closeSidebar();
+  }
+});
+
+/* ===== MOBILE GHOST CLICK FIX ===== */
+
 let lastTouchTime = 0;
 
 document.addEventListener("touchstart", () => {
   lastTouchTime = Date.now();
 });
 
-document.addEventListener("click", (e) => {
-  if (Date.now() - lastTouchTime < 300) {
-    e.stopPropagation();
-  }
-}, true);
+document.addEventListener(
+  "click",
+  (e) => {
+    if (Date.now() - lastTouchTime < 300) {
+      e.stopPropagation();
+    }
+  },
+  true
+);
