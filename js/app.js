@@ -21,6 +21,7 @@ const moduleEmptyState = document.getElementById("moduleEmptyState");
 
 const unlockButton = document.getElementById("unlockButton");
 const sectionSubtitle = document.getElementById("sectionSubtitle");
+const buyAccessBtn = document.getElementById("buyAccessBtn");
 
 const practiceCard = document.getElementById("practiceCard");
 const thoughtCard = document.getElementById("thoughtCard");
@@ -330,6 +331,7 @@ function bindEvents() {
   sidebarOpenBtn?.addEventListener("click", openSidebar);
   sidebarCloseBtn?.addEventListener("click", closeSidebar);
   sidebarOverlay?.addEventListener("click", closeSidebar);
+  buyAccessBtn?.addEventListener("click", openUnlockModal);
 
   topicsToggle?.addEventListener("click", toggleTopicsPanel);
 
@@ -375,6 +377,19 @@ function bindEvents() {
   practiceViewLink?.addEventListener("click", (event) => {
     event.preventDefault();
     openLastModuleSection("practice");
+  });
+
+  document.addEventListener("click", (event) => {
+    const sidebarPanel = document.querySelector(".sidebar__panel");
+    if (!sidebarPanel) return;
+
+    if (
+      document.body.classList.contains("is-sidebar-open") &&
+      !sidebarPanel.contains(event.target) &&
+      !event.target.closest("#sidebarOpenBtn")
+    ) {
+      closeSidebar();
+    }
   });
 
   window.addEventListener("hashchange", handleHashChange);

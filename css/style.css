@@ -2020,3 +2020,119 @@ max-width:420px;
 margin-bottom:14px;
 
 }
+
+
+/* ===== Payment CTA refinements ===== */
+.premium-cta__subnote {
+  margin: -6px 0 0;
+  color: var(--text-muted);
+  line-height: 1.65;
+  font-size: 14px;
+}
+
+.premium-cta__telegram-btn {
+  width: 100%;
+}
+
+#buyAccessBtn {
+  width: 100%;
+}
+
+.modal__payment-status {
+  margin: 18px 0 0;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(121, 184, 255, 0.14);
+  background: rgba(79, 140, 255, 0.06);
+}
+
+.modal__payment-title {
+  margin: 0 0 8px;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.modal__payment-text {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.75;
+}
+
+/* ===== Sidebar stability fixes ===== */
+.sidebar,
+.sidebar__panel,
+.sidebar__inner,
+.sidebar-block,
+.track-nav,
+.module-nav,
+.topic-nav-wrap {
+  min-width: 0;
+}
+
+.sidebar__panel {
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sidebar__inner {
+  overflow: visible;
+}
+
+.sidebar-block {
+  overflow: visible;
+}
+
+.sidebar-block--tracks,
+.sidebar-block--modules,
+.sidebar-block--topics {
+  min-height: 0;
+}
+
+.track-nav,
+.module-nav,
+.topic-nav-wrap {
+  min-height: 0;
+}
+
+.track-nav {
+  overflow-y: auto;
+  overflow-x: hidden;
+  align-content: start;
+  padding-right: 6px;
+}
+
+.module-nav,
+.topic-nav-wrap {
+  scrollbar-gutter: stable;
+}
+
+@media (max-width: 980px) {
+  .sidebar {
+    overflow: hidden;
+  }
+
+  .sidebar__panel {
+    max-width: min(100vw, 420px);
+  }
+
+  .sidebar__inner {
+    height: calc(100dvh - 82px);
+    grid-template-rows: minmax(150px, auto) minmax(180px, 1fr) minmax(180px, 1fr);
+    overflow: visible;
+  }
+
+  .track-nav {
+    max-height: 100%;
+  }
+
+  .module-nav,
+  .topic-nav-wrap {
+    max-height: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .premium-cta__subnote {
+    font-size: 15px;
+  }
+}

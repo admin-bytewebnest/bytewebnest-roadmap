@@ -15,7 +15,7 @@
     <link rel="canonical" href="https://admin-bytewebnest.github.io/bytewebnest-roadmap/" />
     <link rel="alternate" hreflang="en" href="https://admin-bytewebnest.github.io/bytewebnest-roadmap/" />
     <link rel="alternate" hreflang="uk" href="https://admin-bytewebnest.github.io/bytewebnest-roadmap/uk/" />
-    <link rel="alternate" hreflang="ru" href="https://admin-bytewebnest.github.io/bytewebnest-roadmap/ru/" />
+    <link rel="alternate" hreflang="en" href="https://admin-bytewebnest.github.io/bytewebnest-roadmap/" />
     <link rel="alternate" hreflang="x-default" href="https://admin-bytewebnest.github.io/bytewebnest-roadmap/" />
 
     <meta property="og:type" content="website" />
@@ -75,7 +75,6 @@
             <a href="#topics" class="header__link" id="topicsViewLink">Topics</a>
             <a href="#practice" class="header__link" id="practiceViewLink">Practice</a>
         </nav>
-
         <div class="lang-switcher" aria-label="Language switcher">
             <a href="./index.html" class="lang-switcher__link lang-switcher__link--active" lang="en">EN</a>
             <a href="./uk/index.html" class="lang-switcher__link" lang="uk">UA</a>
@@ -173,7 +172,7 @@
 
                             <div class="landing__visual">
                                 <div class="landing__visual-card">
-                                    <img src="images/banner-en.png" alt="BYTEWEBNEST roadmap preview"
+                                    <img src="../images/banner-en.png" alt="BYTEWEBNEST roadmap preview"
                                         class="landing__image" />
                                 </div>
                             </div>
@@ -207,7 +206,7 @@
                             </article>
 
                             <article class="benefit-card fade-up">
-                                <h3 class="benefit-card__title">Growth roadmap</h3>
+                                <h3 class="benefit-card__title">Roadmap for</h3>
                                 <p class="benefit-card__text">
                                     From Starter to Senior, you see not only the current module but the entire path of a developer’s growth.
                                 </p>
@@ -286,10 +285,12 @@
 
                             <div class="premium-cta__side">
                                 <div class="premium-cta__price">10$</div>
-                                <p class="premium-cta__note">To get access, message us on Telegram</p>
+                                <button class="btn btn--primary" id="buyAccessBtn" type="button">Get access</button>
+                                <p class="premium-cta__note">Online payments via bank cards and cryptocurrency will be available soon.</p>
+                                <p class="premium-cta__subnote">We are currently preparing the integration for quick online payments across Ukraine and Europe.</p>
                                 <a href="https://t.me/bytewebnest" target="_blank" rel="noopener noreferrer"
-                                    class="btn btn--primary">
-                                    @bytewebnest
+                                    class="btn btn--secondary premium-cta__telegram-btn">
+                                    Contact via Telegram
                                 </a>
                             </div>
                         </div>
@@ -470,7 +471,7 @@
 
                                 <div class="lockable-card__overlay">
                                     <button class="lockable-card__overlay-btn" type="button">
-                                        Open final outcomes
+                                        Open summary
                                     </button>
                                 </div>
                             </article>
@@ -518,6 +519,13 @@
                     <li>updates for upcoming modules</li>
                     <li>access to additional sections that will become available soon</li>
                 </ul>
+
+                <div class="modal__payment-status">
+                    <p class="modal__payment-title">Online payment is being connected</p>
+                    <p class="modal__payment-text">
+                        Card and crypto payments will be available soon. Right now you can request access manually via Telegram while the payment gateway is being integrated.
+                    </p>
+                </div>
 
                 <p class="modal__contact">
                     Telegram for contact:

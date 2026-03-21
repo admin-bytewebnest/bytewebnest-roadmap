@@ -15,7 +15,7 @@
     <link rel="canonical" href="https://admin-bytewebnest.github.io/bytewebnest-roadmap/uk/" />
     <link rel="alternate" hreflang="en" href="https://admin-bytewebnest.github.io/bytewebnest-roadmap/" />
     <link rel="alternate" hreflang="uk" href="https://admin-bytewebnest.github.io/bytewebnest-roadmap/uk/" />
-    <link rel="alternate" hreflang="ru" href="https://admin-bytewebnest.github.io/bytewebnest-roadmap/ru/" />
+    <link rel="alternate" hreflang="uk" href="https://admin-bytewebnest.github.io/bytewebnest-roadmap/uk/" />
     <link rel="alternate" hreflang="x-default" href="https://admin-bytewebnest.github.io/bytewebnest-roadmap/" />
 
     <meta property="og:type" content="website" />
@@ -75,7 +75,6 @@
             <a href="#topics" class="header__link" id="topicsViewLink">Теми</a>
             <a href="#practice" class="header__link" id="practiceViewLink">Практика</a>
         </nav>
-
         <div class="lang-switcher" aria-label="Language switcher">
             <a href="../index.html" class="lang-switcher__link" lang="en">EN</a>
             <a href="./index.html" class="lang-switcher__link lang-switcher__link--active" lang="uk">UA</a>
@@ -286,10 +285,12 @@
 
                             <div class="premium-cta__side">
                                 <div class="premium-cta__price">10$</div>
-                                <p class="premium-cta__note">Щоб отримати доступ, напиши в Telegram</p>
+                                <button class="btn btn--primary" id="buyAccessBtn" type="button">Оплатити доступ</button>
+                                <p class="premium-cta__note">Онлайн-оплата через банківські картки та криптовалюту скоро стане доступною.</p>
+                                <p class="premium-cta__subnote">Зараз ми готуємо підключення швидкої онлайн-оплати для України та Європи.</p>
                                 <a href="https://t.me/bytewebnest" target="_blank" rel="noopener noreferrer"
-                                    class="btn btn--primary">
-                                    @bytewebnest
+                                    class="btn btn--secondary premium-cta__telegram-btn">
+                                    Написати в Telegram
                                 </a>
                             </div>
                         </div>
@@ -470,7 +471,7 @@
 
                                 <div class="lockable-card__overlay">
                                     <button class="lockable-card__overlay-btn" type="button">
-                                        Відкрити підсумкові результати
+                                        Відкрити підсумок
                                     </button>
                                 </div>
                             </article>
@@ -491,11 +492,11 @@
 
             <div class="modal__brand">
                 <div class="modal__brand-logo">
-                    <img src="../images/logo.jpg" alt="BYTEWEBNEST" class="modal__brand-image" />
+                    <img src="../images/logo.png" alt="BYTEWEBNEST" class="modal__brand-image" />
                 </div>
             </div>
 
-            <p class="modal__eyebrow">Повний доступ до навчання</p>
+            <p class="modal__eyebrow">Повний доступ к обучению</p>
             <h2 class="modal__title" id="unlockModalTitle">Розблокувати всі модулі</h2>
 
             <p class="modal__text">
@@ -518,6 +519,13 @@
                     <li>оновлення на наступні модулі</li>
                     <li>доступ до додаткових розділів, які скоро стануть доступними</li>
                 </ul>
+
+                <div class="modal__payment-status">
+                    <p class="modal__payment-title">Онлайн-оплата підключається</p>
+                    <p class="modal__payment-text">
+                        Оплата карткою та криптовалютою скоро стане доступною. Поки платіжний шлюз перебуває в процесі підключення, доступ можна отримати вручну через Telegram.
+                    </p>
+                </div>
 
                 <p class="modal__contact">
                     Telegram для зв’язку:
@@ -581,7 +589,7 @@
                 </p>
 
                 <button onclick="location.reload()" class="btn btn--primary">
-                    Почати навчання знову
+                    Почати навчання заново
                 </button>
 
             </div>

@@ -75,7 +75,6 @@
             <a href="#topics" class="header__link" id="topicsViewLink">Темы</a>
             <a href="#practice" class="header__link" id="practiceViewLink">Практика</a>
         </nav>
-
         <div class="lang-switcher" aria-label="Language switcher">
             <a href="../index.html" class="lang-switcher__link" lang="en">EN</a>
             <a href="../uk/index.html" class="lang-switcher__link" lang="uk">UA</a>
@@ -286,10 +285,12 @@
 
                             <div class="premium-cta__side">
                                 <div class="premium-cta__price">10$</div>
-                                <p class="premium-cta__note">Чтобы получить доступ, напиши в Telegram</p>
+                                <button class="btn btn--primary" id="buyAccessBtn" type="button">Оплатить доступ</button>
+                                <p class="premium-cta__note">Онлайн-оплата через банковские карты и криптовалюту скоро станет доступной.</p>
+                                <p class="premium-cta__subnote">Сейчас мы готовим подключение быстрого онлайн-платежа для Украины и Европы.</p>
                                 <a href="https://t.me/bytewebnest" target="_blank" rel="noopener noreferrer"
-                                    class="btn btn--primary">
-                                    @bytewebnest
+                                    class="btn btn--secondary premium-cta__telegram-btn">
+                                    Написать в Telegram
                                 </a>
                             </div>
                         </div>
@@ -518,6 +519,13 @@
                     <li>обновления на следующие модули</li>
                     <li>доступ к дополнительным разделам, которые скоро станут доступны</li>
                 </ul>
+
+                <div class="modal__payment-status">
+                    <p class="modal__payment-title">Онлайн-оплата подключается</p>
+                    <p class="modal__payment-text">
+                        Оплата картой и криптовалютой скоро станет доступной. Пока платёжный шлюз находится в процессе подключения, доступ можно получить вручную через Telegram.
+                    </p>
+                </div>
 
                 <p class="modal__contact">
                     Telegram для связи:
