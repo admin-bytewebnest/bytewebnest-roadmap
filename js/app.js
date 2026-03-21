@@ -1400,3 +1400,45 @@ function hideCompletionScreen() {
 }
 
 loadContent();
+
+/* ===== BURGER INIT ===== */
+
+function initBurgerIcon() {
+  const btn = document.getElementById("sidebarOpenBtn");
+  if (!btn) return;
+
+  // если уже добавлен — не дублируем
+  if (btn.querySelector(".burger-icon")) return;
+
+  btn.textContent = "";
+
+  const burger = document.createElement("span");
+  burger.className = "burger-icon";
+
+  burger.innerHTML = `
+    <span></span>
+    <span></span>
+    <span></span>
+  `;
+
+  btn.appendChild(burger);
+}
+
+initBurgerIcon();
+
+/* ===== BURGER STATE SYNC ===== */
+
+const originalOpenSidebar = openSidebar;
+const originalCloseSidebar = closeSidebar;
+
+openSidebar = function () {
+  originalOpenSidebar();
+  const btn = document.getElementById("sidebarOpenBtn");
+  btn?.classList.add("is-active");
+};
+
+closeSidebar = function () {
+  originalCloseSidebar();
+  const btn = document.getElementById("sidebarOpenBtn");
+  btn?.classList.remove("is-active");
+};
