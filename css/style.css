@@ -1353,7 +1353,7 @@ input {
   border: 1px solid rgba(137, 160, 199, 0.16);
   background: linear-gradient(180deg, rgba(14, 28, 54, 0.95), rgba(8, 18, 36, 0.97));
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
-  margin-top: 200px;
+  
 }
 
 .modal__close {
@@ -1772,6 +1772,9 @@ input {
 @media (max-width: 560px) {
   .track-nav {
     grid-template-columns: 1fr;
+  }
+  .modal__dialog {
+    margin-top: 200px;
   }
 }
 
